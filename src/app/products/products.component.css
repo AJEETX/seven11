@@ -1,0 +1,8 @@
+.products{
+    text-align:left;
+    margin-left:auto;
+    margin-right:auto;
+}
+thead>tr>th {
+    cursor: pointer;
+}

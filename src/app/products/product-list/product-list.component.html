@@ -1,0 +1,67 @@
+<div class="top">
+    <div class=error >{{error.error}}</div >
+      <div class="alignright">
+        <div class="nothing">  
+        </div>
+        <div class="welcome log nothing"> Welcome
+            <i class="fa fa-quote-left right left"></i>
+            <a [routerLink]="['/user']" class="farleft" >
+              {{user}}
+            </a>
+            <i class="fa fa-quote-right left"></i>
+          </div>
+      <div class="log">
+        <a [routerLink]="['/login']" class="farleft" ><i class="fa fa-power-off right"></i>Logout</a>
+      </div>
+<div class="search">
+  <input type="search" class="form-control" placeholder="search ..." [formControl]="searchField">
+  <ul>
+    <li *ngFor="let search of searches">{{ search }}</li>
+  </ul>
+  <div class="alignleft">
+    <button class="btn btn-primary" (click)="addProduct()"><i class="fa fa-plus-square right"></i>Add Drive Off</button>
+  </div>
+  <svg viewBox="0 0 260 25" xmlns="http://www.w3.org/2000/svg">
+    <style>
+      .heavy { font: bold 10px sans-serif; }
+      .Rrrrr { font: italic 10px serif; fill: red; text-shadow: 1px 1px 1px grey;}
+    </style>
+    <text x="90" y="10" class="heavy">Drive Off</text>
+    <text x="135" y="10" class="Rrrrr">Vehicles</text>
+  </svg>
+</div>
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <!-- <th class="hidden">Id</th> -->
+          <th (click)="sort('name')">Rego
+            <span class="glyphicon sort-icon" *ngIf="key =='name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+          
+          <th>Event No</th>
+          <th>Money</th>
+          <th>Location</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products | orderBy: key : reverse | paginate: { itemsPerPage: 5, currentPage: p }; let i = index" [ngStyle]="setMyStyles(product) ">
+          <td style="display:none">{{product.pId}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.eventNo}}</td>
+          <td>{{product.amountlost}}</td>
+          <td>{{product.location}}</td>
+          <td>{{product.date | date : "dd-MMM-y"}}</td>
+          <td>{{product.time}}</td>
+          <td>
+            <i class="fa fa-pencil-square-o icon-size-edit" aria-hidden="true" (click)="editProduct(product)"></i>
+            <i class="fa fa-trash-o left icon-size-delete" (click)="deleteProduct(product)" ></i>
+          </td>        
+        </tbody>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </table>
+      <div *ngIf="loading"><i class="fa fa-spinner"></i></div>  
+    </div>
+    
