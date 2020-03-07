@@ -16,7 +16,6 @@ import { LoginComponent } from './login/login.component';
 import { AuthInterceptor } from './auth/intercept';
 import { UserComponent } from './user/user/user.component';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
-import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {DisableControlDirective} from './DisableControlDirective'
@@ -38,7 +37,6 @@ import {DisableControlDirective} from './DisableControlDirective'
     routing,
     ReactiveFormsModule,
     AmazingTimePickerModule,
-    DatePickerModule,
     Ng2OrderModule,
     NgxPaginationModule 
   ],

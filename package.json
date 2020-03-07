@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -o ",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -21,7 +21,6 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
-    "@syncfusion/ej2-angular-calendars": "^17.4.51",
     "amazing-time-picker": "^1.8.0",
     "bootstrap": "^4.4.1",
     "core-js": "^2.5.4",
@@ -52,7 +51,7 @@
     "typescript": "^2.9.2"
   },
   "engines": {
-    "node": "6.11.0",
+    "node": "12.16.1",
     "npm": "3.10.10"
   }
 }
