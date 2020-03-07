@@ -35,3 +35,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     setup certificate for https
     --ssl --ssl-key d\":\"\"certificates\"\"localhost.key  --ssl-cert d\":\"\"certificates\"\"certificate.crt
 
+    removed from package.json
+         "start": "ng serve --port 5050 -o --ssl --ssl-key d\":\\\\certificates\\\\localhost.key  --ssl-cert d\":\\\\certificates\\\\certificate.crt",
+
