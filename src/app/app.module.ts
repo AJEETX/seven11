@@ -19,6 +19,9 @@ import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {DisableControlDirective} from './DisableControlDirective'
+import { MyDatePickerModule } from 'mydatepicker';
+
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,11 +41,12 @@ import {DisableControlDirective} from './DisableControlDirective'
     ReactiveFormsModule,
     AmazingTimePickerModule,
     Ng2OrderModule,
-    NgxPaginationModule 
+    NgxPaginationModule,
+    MyDatePickerModule 
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    ProductService,AuthGuard,AuthService],
+    ProductService,AuthGuard,AuthService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
