@@ -19,7 +19,7 @@ import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
-
+import {DisableControlDirective} from './DisableControlDirective'
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +30,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     RegisterComponent,
     LoginComponent,
     UserComponent,
+    DisableControlDirective
   ],
   imports: [
     BrowserModule,
