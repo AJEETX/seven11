@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User, UserInfo } from '../product';
 import { map } from 'rxjs/operators';
+import {Configuration} from '../../configuration/config';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   error=''
-  baseUrl:string="https://localhost:5001/users"
+  baseUrl:string=new Configuration().baseUrl+ "users"
   constructor(private http:HttpClient) { }
   login(username:string,password:string){
     return this.http.post<any>(this.baseUrl+ '/authenticate',{ username, password })

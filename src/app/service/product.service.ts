@@ -1,11 +1,13 @@
 import { Product } from '../product';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {Configuration} from '../../configuration/config';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  baseUrl:string="https://localhost:5001/products"
+  baseUrl:string=new Configuration().baseUrl+"products"
   constructor(private http:HttpClient) { }
   getProducts(query?:string){
     return this.http.get<Product[]>(this.baseUrl+ '?q='+query);
