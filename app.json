@@ -1,0 +1,11 @@
+{
+    "name": "angular front end application",
+    "description": "seven11 drive off application",
+    "keywords": [
+      "angular",
+      "frontend"
+    ],
+    "website": "https://ajeetx.github.io",
+    "repository": "https://github.com/ajeetx/seven11.git",
+    "logo": "https://nodejs.org/images/logos/nodejs.png"
+  }
