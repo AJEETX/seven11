@@ -30,6 +30,8 @@
     <text x="135" y="10" class="Rrrrr">Vehicles</text>
   </svg>
 </div>
+<div *ngIf="loading"><i class="fa fa-spinner"></i></div>  
+
 <table class="table table-striped">
       <thead>
         <tr>
@@ -71,6 +73,5 @@
         </tbody>
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </table>
-      <div *ngIf="loading"><i class="fa fa-spinner"></i></div>  
     </div>
     

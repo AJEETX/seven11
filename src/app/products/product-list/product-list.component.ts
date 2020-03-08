@@ -30,14 +30,19 @@ export class ProductListComponent implements OnInit {
   p: number = 1;
 
   constructor(private router:Router, private service:VehicleService) {
+    this.loading=true
+
     if(localStorage.getItem('user'))
     this.user=localStorage.getItem('user')
     this.service.getVehicles()
     .subscribe(data=>{
         this.products=data
+        this.loading=false
+
     })
    }
   ngOnInit() {
+    this.loading=true
     this.searchField = new FormControl()
     this.searchField.valueChanges
     .pipe(
@@ -48,6 +53,7 @@ export class ProductListComponent implements OnInit {
       this.service.getVehicles(term)
       .subscribe(data=>{
         console.log(data)
+        this.loading=false
         this.products=data
       })
     });
@@ -59,7 +65,6 @@ export class ProductListComponent implements OnInit {
   editProduct(product: Vehicle): void {
     this.loading=true
     localStorage.removeItem("pid");
-    console.log(product)
     localStorage.setItem("pid", product.pId.toString());
     this.router.navigate(['edit-product']);
   };
@@ -78,7 +83,6 @@ export class ProductListComponent implements OnInit {
   };
   getUserDetail(){
     var id=localStorage.getItem('id')
-    console.log('user '+id)
     this.router.navigate(['/user']);
   }
   setMyStyles(product) {
