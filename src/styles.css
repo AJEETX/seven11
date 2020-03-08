@@ -1,7 +1,5 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
-body{
-    min-width: 650px;
-}
+
 .username{
     color:#007bff;
     font-weight: bold;
