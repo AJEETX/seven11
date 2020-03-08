@@ -33,6 +33,7 @@ export class AuthService {
     return user;
   }
   getToken(): string {
+    console.log(this.baseUrl)
     return localStorage.getItem('token');
   }
   getUserId(): string {

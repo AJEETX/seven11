@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import {IMyDpOptions} from 'mydatepicker';
 import { DatepickerOptions } from 'ng2-datepicker';
 
 @Component({
@@ -55,12 +54,6 @@ public maxDate: Date = new Date ();
       data.date=new Date(currentDate);
       console.log(data.date)
       this.formEdit.setValue(data)
-      // this.formEdit.patchValue({date: {
-      //   date: {
-      //       year: data.date.getFullYear(),
-      //       month: data.date.getMonth() + 1,
-      //       day: data.date.getDate()}
-      //   }});
     })
   }
   onSubmit(){
