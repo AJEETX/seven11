@@ -1,4 +1,4 @@
-export class Product {
+export class Vehicle {
     id:string
     pId:number
     brand:string

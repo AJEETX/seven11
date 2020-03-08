@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User, UserInfo } from '../product';
 import { map } from 'rxjs/operators';
-import {Configuration} from '../../configuration/config';
+import {Config} from '../../configuration/config';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   error=''
-  baseUrl:string=new Configuration().baseUrl+ "users"
+  baseUrl:string=Config.baseUrl+ "users"
   constructor(private http:HttpClient) { }
   login(username:string,password:string){
     return this.http.post<any>(this.baseUrl+ '/authenticate',{ username, password })
@@ -28,7 +28,7 @@ export class AuthService {
   }
   getUserById(){
     var id=this.getUserId();
-    console.log(id)
+    console.log(this.baseUrl)
     var user= this.http.get<User>(this.baseUrl+'/'+id)
     return user;
   }
@@ -36,9 +36,11 @@ export class AuthService {
     return localStorage.getItem('token');
   }
   getUserId(): string {
+    console.log(this.baseUrl)
     return localStorage.getItem('userId');
   }  
   loggedIn(){
+    console.log(this.baseUrl)
     return !!localStorage.getItem('token')
   }
   logout(){
@@ -54,6 +56,7 @@ export class AuthService {
   update(user:UserInfo){
     localStorage.removeItem('user')
     localStorage.setItem('user', user.firstname+' '+user.lastname);
+    console.log(this.baseUrl)
     return this.http.put(this.baseUrl+'/'+user.Id,user);
   }
 }

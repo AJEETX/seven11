@@ -1,5 +1,5 @@
-import { ProductService } from '../../service/product.service';
-import { Product } from './../../product';
+import { VehicleService } from '../../service/vehicle.service';
+import { Vehicle } from './../../product';
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import { FormControl } from '@angular/forms';
@@ -11,7 +11,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  products:Product[]
+  products:Vehicle[]
   user:string
   admin:boolean
   loading=false
@@ -29,10 +29,10 @@ export class ProductListComponent implements OnInit {
     }
   p: number = 1;
 
-  constructor(private router:Router, private service:ProductService) {
+  constructor(private router:Router, private service:VehicleService) {
     if(localStorage.getItem('user'))
     this.user=localStorage.getItem('user')
-    this.service.getProducts()
+    this.service.getVehicles()
     .subscribe(data=>{
         this.products=data
     })
@@ -45,7 +45,7 @@ export class ProductListComponent implements OnInit {
       distinctUntilChanged()
     )
     .subscribe(term => {
-      this.service.getProducts(term)
+      this.service.getVehicles(term)
       .subscribe(data=>{
         console.log(data)
         this.products=data
@@ -56,14 +56,14 @@ export class ProductListComponent implements OnInit {
     this.loading=true
     this.router.navigate(['add-product'])
   }
-  editProduct(product: Product): void {
+  editProduct(product: Vehicle): void {
     this.loading=true
     localStorage.removeItem("pid");
     console.log(product)
     localStorage.setItem("pid", product.pId.toString());
     this.router.navigate(['edit-product']);
   };
-  deleteProduct(product: Product): void {
+  deleteProduct(product: Vehicle): void {
     this.loading=true
 
     this.service.delete(product.pId)

@@ -1,9 +1,10 @@
-import { ProductService } from '../../service/product.service';
+import { VehicleService } from '../../service/vehicle.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import {IMyDpOptions} from 'mydatepicker';
+import { DatepickerOptions } from 'ng2-datepicker';
 
 @Component({
   selector: 'app-edit-product',
@@ -14,16 +15,23 @@ export class EditProductComponent implements OnInit {
 formEdit:FormGroup
 user:string
 loading=false
-public myDatePickerOptions: IMyDpOptions = {
-  dateFormat: 'dd mmm yyyy',
-  disableSince:{
-    year: new Date().getFullYear(), 
-    month: new Date().getMonth(), 
-    day: new Date().getDay()}
+options: DatepickerOptions = {
+  displayFormat: 'MMM D[,] YYYY',
+  barTitleFormat: 'MMMM YYYY',
+  dayNamesFormat: 'dd',
+  firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
+  minDate: new Date(Date.now()), // Minimal selectable date
+  maxDate: new Date(Date.now()),  // Maximal selectable date
+  barTitleIfEmpty: 'Click to select a date',
+  placeholder: 'Click to select a date', // HTML input placeholder attribute (default: '')
+  addClass: 'form-control', // Optional, value to pass on to [ngClass] on the input field
+  addStyle: {}, // Optional, value to pass to [ngStyle] on the input field
+  fieldId: 'my-date-picker', // ID to assign to the input field. Defaults to datepicker-<counter>
+  useEmptyBarTitle: false, // Defaults to true. If set to false then barTitleIfEmpty will be disregarded and a date will always be shown 
 };
 public maxDate: Date = new Date ();
 
-  constructor(private datePipe: DatePipe,private formBuilder:FormBuilder,private service:ProductService,private router:Router) { 
+  constructor(private datePipe: DatePipe,private formBuilder:FormBuilder,private service:VehicleService,private router:Router) { 
     this.user=localStorage.getItem('user')
   }
   ngOnInit() {
@@ -38,27 +46,30 @@ public maxDate: Date = new Date ();
       amountlost:[null,null],
       location:[null,null],
       eventNo:['',Validators.required],
-      date:[new Date(),null]
+      date:[null,null]
     })
-    this.service.getProductById(parseInt(pId))
+    this.service.getVehicleById(parseInt(pId))
     .subscribe(data=>{
       let currentDate = new DatePipe('en-US').transform(data.date, 'yyyy/MM/dd');
-      data.date=new Date(currentDate);
       console.log(currentDate)
+      data.date=new Date(currentDate);
+      console.log(data.date)
       this.formEdit.setValue(data)
-      this.formEdit.patchValue({date: {
-        date: {
-            year: data.date.getFullYear(),
-            month: data.date.getMonth() + 1,
-            day: data.date.getDate()}
-        }});
+      // this.formEdit.patchValue({date: {
+      //   date: {
+      //       year: data.date.getFullYear(),
+      //       month: data.date.getMonth() + 1,
+      //       day: data.date.getDate()}
+      //   }});
     })
   }
   onSubmit(){
     this.loading = true;
-
-    this.service.editProduct(this.formEdit.value)
+    console.log(this.formEdit.value)
+    
+    this.service.editVehicle(this.formEdit.value)
     .subscribe(data=>{
+      this.loading = false;
       this.router.navigate([''])
     })
   }

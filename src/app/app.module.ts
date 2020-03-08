@@ -1,6 +1,6 @@
 import { AuthService } from './service/auth.service';
 import { AuthGuard } from './auth/auth.guard';
-import { ProductService } from './service/product.service';
+import { VehicleService } from './service/vehicle.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {routing} from './app.routing'
@@ -20,7 +20,7 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {DisableControlDirective} from './DisableControlDirective'
 import { MyDatePickerModule } from 'mydatepicker';
-
+import { NgDatepickerModule } from 'ng2-datepicker';
 import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
@@ -33,6 +33,7 @@ import { DatePipe } from '@angular/common';
     LoginComponent,
     UserComponent,
     DisableControlDirective
+    
   ],
   imports: [
     BrowserModule,
@@ -42,11 +43,12 @@ import { DatePipe } from '@angular/common';
     AmazingTimePickerModule,
     Ng2OrderModule,
     NgxPaginationModule,
-    MyDatePickerModule 
+    MyDatePickerModule ,
+    NgDatepickerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    ProductService,AuthGuard,AuthService,DatePipe],
+    VehicleService,AuthGuard,AuthService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

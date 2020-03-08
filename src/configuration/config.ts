@@ -1,4 +1,4 @@
-export class Configuration{
-    baseUrl:string="https://seven11api.herokuapp.com/"
-    // baseUrl:string="https://localhost:5001/"
+import {environment} from '../environments/environment'
+export const Config= {
+    baseUrl:environment.production?"https://seven11api.herokuapp.com/":"https://localhost:5001/"
 }
