@@ -14,7 +14,7 @@ export class EditProductComponent implements OnInit {
 formEdit:FormGroup
 user:string
 loading=false
-error :string= '';
+error :any;
 
 options: DatepickerOptions = {
   displayFormat: 'MMM D[,] YYYY',
