@@ -14,6 +14,8 @@ export class EditProductComponent implements OnInit {
 formEdit:FormGroup
 user:string
 loading=false
+error = '';
+
 options: DatepickerOptions = {
   displayFormat: 'MMM D[,] YYYY',
   barTitleFormat: 'MMMM YYYY',
@@ -58,13 +60,17 @@ public maxDate: Date = new Date ();
   }
   onSubmit(){
     this.loading = true;
-    console.log(this.formEdit.value)
-    
+    if(this.formEdit.invalid)
+      return;
     this.service.editVehicle(this.formEdit.value)
     .subscribe(data=>{
       this.loading = false;
       this.router.navigate([''])
-    })
+    },
+    error => {
+        this.error = error;
+        this.loading = false;
+    });
   }
   back(){
     this.router.navigate([''])
