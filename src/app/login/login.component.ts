@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
-  error :string= '';
+  error :any;
   constructor( private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router,
     private authservice:AuthService) { }
 
