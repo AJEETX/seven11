@@ -15,7 +15,7 @@ export class AddProductComponent implements OnInit {
   user:string
   message:string
   loading = false;
-  error :string= '';
+  error :any;
 
   options: DatepickerOptions = {
     minYear: 1970,
