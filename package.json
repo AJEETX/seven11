@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "seven11",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -37,7 +37,7 @@
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.8.0",
+    "@angular-devkit/build-angular": "^0.900.5",
     "@angular/cli": "^9.0.5",
     "@angular/compiler-cli": "^6.1.10",
     "@angular/language-service": "^6.1.0",
