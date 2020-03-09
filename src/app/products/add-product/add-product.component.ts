@@ -4,6 +4,7 @@ import { VehicleService } from '../../service/vehicle.service';
 import { Router } from '@angular/router';
 import { AmazingTimePickerService } from 'amazing-time-picker';
 import { DatepickerOptions } from 'ng2-datepicker';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-add-product',
@@ -34,7 +35,7 @@ export class AddProductComponent implements OnInit {
     useEmptyBarTitle: true, // Defaults to true. If set to false then barTitleIfEmpty will be disregarded and a date will always be shown 
   };
     public maxDate: Date = new Date ();
-  constructor(private formBuilder:FormBuilder,private service:VehicleService,private router:Router,private atp: AmazingTimePickerService) {
+  constructor(private currencyPipe : CurrencyPipe,private formBuilder:FormBuilder,private service:VehicleService,private router:Router,private atp: AmazingTimePickerService) {
     this.user=localStorage.getItem('user')
    }
 
@@ -45,7 +46,7 @@ export class AddProductComponent implements OnInit {
       watch:[true,null],
       detail:[null,null],
       date:[new Date(),null],
-      amountlost:[null,null],
+      amountlost:[0,null],
       location:[null,null],
       eventno:['',Validators.required],
       time:[null,null]
@@ -53,6 +54,9 @@ export class AddProductComponent implements OnInit {
   }
   onSubmit(){
     this.loading = true;
+    // console.log(this.formatMoney(this.addForm.controls.amountlost.value))
+    // let money=this.formatMoney(this.addForm.controls.amountlost.value)
+    // this.addForm.controls.amountlost.setValue(money)
     this.service.addVehicle(this.addForm.value)
     .subscribe(data=>{
       this.message=data['name'] +'added'
@@ -72,5 +76,9 @@ export class AddProductComponent implements OnInit {
   }
 back(){
   this.router.navigate([''])
-}
+  }
+  formatMoney(value) {
+    const temp = `${value}`.replace(/\,/g, "");
+    return this.currencyPipe.transform(temp).replace("$", "");
+  }
 }

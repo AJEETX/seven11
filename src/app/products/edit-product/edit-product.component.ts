@@ -44,7 +44,7 @@ public maxDate: Date = new Date ();
       watch:[false,null],
       detail:[null,null],
       time:[null,null],
-      amountlost:[null,null],
+      amountlost:[0,null],
       location:[null,null],
       eventNo:['',Validators.required],
       date:[null,null]
