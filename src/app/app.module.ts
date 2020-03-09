@@ -21,7 +21,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {DisableControlDirective} from './DisableControlDirective'
 import { MyDatePickerModule } from 'mydatepicker';
 import { NgDatepickerModule } from 'ng2-datepicker';
-import { DatePipe } from '@angular/common';
+import { DatePipe, CurrencyPipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +48,7 @@ import { DatePipe } from '@angular/common';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    VehicleService,AuthGuard,AuthService,DatePipe],
+    VehicleService,AuthGuard,AuthService,DatePipe,CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

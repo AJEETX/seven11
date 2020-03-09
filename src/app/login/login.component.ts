@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
-  error :any;
+  error :any={error:''};
   constructor( private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router,
     private authservice:AuthService) { }
 
@@ -49,7 +49,9 @@ export class LoginComponent implements OnInit {
                 if(error && error.status==400){
                   this.error = error;
                 }else{
-                  this.error=error
+                  this.error={
+                    error:'some error'
+                  }
                 }
                   this.loading = false;
               });

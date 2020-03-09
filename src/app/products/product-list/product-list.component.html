@@ -45,33 +45,33 @@
           <th (click)="sort('amountlost')">Money
             <span class="glyphicon sort-icon" *ngIf="key =='amountlost'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
           </th>
-          <th (click)="sort('location')">Location
+          <!-- <th (click)="sort('location')">Location
             <span class="glyphicon sort-icon" *ngIf="key =='location'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-          </th>
+          </th> -->
           <th (click)="sort('date')">Date
             <span class="glyphicon sort-icon" *ngIf="key =='date'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
           </th>
-          <th (click)="sort('time')">Time
+          <!-- <th (click)="sort('time')">Time
             <span class="glyphicon sort-icon" *ngIf="key =='time'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-          </th>
+          </th> -->
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of products | orderBy: key : reverse | paginate: { itemsPerPage: 5, currentPage: p }; let i = index" [ngStyle]="setMyStyles(product) ">
+        <tr *ngFor="let product of products | orderBy: key : reverse | paginate: { itemsPerPage: 20, currentPage: p }; let i = index" [ngStyle]="setMyStyles(product) ">
           <td style="display:none">{{product.pId}}</td>
           <td>{{product.name}}</td>
           <td>{{product.eventNo}}</td>
-          <td>{{product.amountlost}}</td>
-          <td>{{product.location}}</td>
+          <td>{{product.amountlost | currency:'$'}}</td>
+          <!-- <td>{{product.location}}</td> -->
           <td>{{product.date | date : "dd-MMM-y"}}</td>
-          <td>{{product.time}}</td>
+          <!-- <td>{{product.time}}</td> -->
           <td>
             <i class="fa fa-pencil-square-o icon-size-edit" aria-hidden="true" (click)="editProduct(product)"></i>
             <i class="fa fa-trash-o left icon-size-delete" (click)="deleteProduct(product)" ></i>
           </td>        
         </tbody>
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
     
