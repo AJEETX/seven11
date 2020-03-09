@@ -12,3 +12,6 @@ input#date_input{
 }
 .heavy { font: bold 10px sans-serif; }
 .Rrrrr {  fill: red; text-shadow: 1px 1px 1px grey;}
+body{
+    max-width: 500px;
+}

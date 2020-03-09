@@ -13,14 +13,15 @@
       <div class="log">
         <a [routerLink]="['/login']" class="farleft" ><i class="fa fa-power-off right"></i>Logout</a>
       </div>
+      <div class="alignleft">
+        <button class="btn btn-primary" (click)="addProduct()"><i class="fa fa-plus-square right"></i>Add Drive Off</button>
+      </div>
 <div class="search">
-  <input type="search" class="form-control" placeholder="search ..." [formControl]="searchField">
+  <input type="search" class="form-control" placeholder="type to search ..." [formControl]="searchField" >
   <ul>
     <li *ngFor="let search of searches">{{ search }}</li>
   </ul>
-  <div class="alignleft">
-    <button class="btn btn-primary" (click)="addProduct()"><i class="fa fa-plus-square right"></i>Add Drive Off</button>
-  </div>
+
   <svg viewBox="0 0 260 25" xmlns="http://www.w3.org/2000/svg">
     <style>
       .heavy { font: bold 10px sans-serif; }

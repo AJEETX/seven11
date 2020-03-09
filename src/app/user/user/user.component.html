@@ -17,13 +17,13 @@
         <style>
           .small { font: italic 13px sans-serif; }
           .heavy { font: bold 10px sans-serif; }
-          .Rrrrr { font: italic 13px serif; fill: red; }
+          .Rrrrr { font: 13px serif; fill: red; }
         </style>
       
       
         <text x="95" y="10" class="heavy">edit</text>
       
-        <text x="115" y="10" class="Rrrrr">profile !</text>
+        <text x="115" y="10" class="heavy Rrrrr">profile !</text>
       </svg>
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
 <div class="form-group">
@@ -43,7 +43,7 @@
 
 <div class="form-group">
   <button [disabled]="loading || !userForm.valid" class="btn btn-primary  right">
-    <i class="fa fa-floppy-o right-margin"></i>Update</button>
+    <i class="fa fa-floppy-o right-margin"></i> Update</button>
   <a [routerLink]="['']">Cancel</a>
   </div>
 </form>

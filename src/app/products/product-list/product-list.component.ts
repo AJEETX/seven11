@@ -88,7 +88,7 @@ export class ProductListComponent implements OnInit {
   setMyStyles(product) {
     let styles = {
       'color': product.watch ? 'white' : 'black',
-      'font-weight': product.watch ?'bold':'normal',
+      'font-size': '.8em',
       'background-color':product.watch ?'red':'white'
     };
     return styles;
