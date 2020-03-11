@@ -1,0 +1,11 @@
+{
+    "/add-product": {
+      "target": "http://ipify.org",
+      "secure": false,
+      "pathRewrite": {
+        "^/add-product": ""
+      },
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }

@@ -25,7 +25,8 @@ error = '';
         id:[],
         firstname: ['', Validators.required],
         lastname: ['', Validators.required],
-        username: ['', Validators.required]
+        username: ['', Validators.required],
+        location: ['', Validators.required]
     });
     if(localStorage.getItem('user') && localStorage.getItem('username'))
     this.user=localStorage.getItem('user')

@@ -15,6 +15,7 @@ export class User{
     Username:string
     FirstName:string
     LastName:string
+    Location:string
     Token:string 
 }
 export class UserInfo{
@@ -22,4 +23,5 @@ export class UserInfo{
     username:string
     firstname:string
     lastname:string
+    Location:string
 }

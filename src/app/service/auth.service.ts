@@ -51,8 +51,8 @@ export class AuthService {
     localStorage.removeItem('roles')
     localStorage.removeItem('id')
   }
-  register(firstname:string,lastname:string, username:string,password:string){
-    return this.http.post<any>(this.baseUrl+ '/register',{ firstname,lastname, username, password })
+  register(firstname:string,lastname:string, username:string,location:string, password:string){
+    return this.http.post<any>(this.baseUrl+ '/register',{ firstname,lastname, username,location, password })
     }
   update(user:UserInfo){
     localStorage.removeItem('user')

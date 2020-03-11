@@ -22,8 +22,9 @@ export class RegisterComponent implements OnInit {
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', Validators.required]
-  });
+      password: ['', Validators.required],
+      location: ['', Validators.required]
+    });
   this.authservice.logout();
   }
     get f() { return this.registerForm.controls; }
@@ -35,7 +36,7 @@ export class RegisterComponent implements OnInit {
       }
 
       this.loading = true;
-     this.authservice.register(this.f.firstname.value,this.f.lastname.value,this.f.username.value, 
+     this.authservice.register(this.f.firstname.value,this.f.lastname.value,this.f.username.value, this.f.location.value,
       this.f.password.value)
       .subscribe(data=>{
         console.log(data)

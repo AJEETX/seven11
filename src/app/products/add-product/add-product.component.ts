@@ -35,11 +35,15 @@ export class AddProductComponent implements OnInit {
     useEmptyBarTitle: true, // Defaults to true. If set to false then barTitleIfEmpty will be disregarded and a date will always be shown 
   };
     public maxDate: Date = new Date ();
-  constructor(private currencyPipe : CurrencyPipe,private formBuilder:FormBuilder,private service:VehicleService,private router:Router,private atp: AmazingTimePickerService) {
+  constructor(private currencyPipe : CurrencyPipe,
+    private formBuilder:FormBuilder,
+    private service:VehicleService,
+    private router:Router,private atp: AmazingTimePickerService) {
     this.user=localStorage.getItem('user')
    }
 
   ngOnInit() {
+    // this.getIP();
     this.addForm=this.formBuilder.group({
       id:[Math.random().toString(36).substring(2, 15),null],
       name:['',Validators.required],
@@ -52,11 +56,15 @@ export class AddProductComponent implements OnInit {
       time:[null,null]
     })
   }
+  getIP()  
+  {  
+    let ip= this.service.getIPAddress()  
+    
+      // this.addForm.controls.location.setValue(res.ip);  
+    
+  }  
   onSubmit(){
     this.loading = true;
-    // console.log(this.formatMoney(this.addForm.controls.amountlost.value))
-    // let money=this.formatMoney(this.addForm.controls.amountlost.value)
-    // this.addForm.controls.amountlost.setValue(money)
     this.service.addVehicle(this.addForm.value)
     .subscribe(data=>{
       this.message=data['name'] +'added'
