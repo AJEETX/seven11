@@ -9,6 +9,7 @@ export class Vehicle {
     amountlost:number
     eventno:string
     date:Date
+    userId:string
 }
 export class User{
     Id:number

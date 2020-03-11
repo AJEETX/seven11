@@ -14,6 +14,7 @@ import { CurrencyPipe } from '@angular/common';
 export class AddProductComponent implements OnInit {
   addForm:FormGroup
   user:string
+  userId:string
   message:string
   loading = false;
   error :any;
@@ -40,6 +41,7 @@ export class AddProductComponent implements OnInit {
     private service:VehicleService,
     private router:Router,private atp: AmazingTimePickerService) {
     this.user=localStorage.getItem('user')
+    this.userId=localStorage.getItem('userId')
    }
 
   ngOnInit() {
@@ -53,7 +55,8 @@ export class AddProductComponent implements OnInit {
       amountlost:[0,null],
       location:[null,null],
       eventno:['',Validators.required],
-      time:[null,null]
+      time:[null,null],
+      userId:[null,null]
     })
   }
   getIP()  

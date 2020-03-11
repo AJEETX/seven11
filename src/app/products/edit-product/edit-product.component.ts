@@ -47,7 +47,8 @@ public maxDate: Date = new Date ();
       amountlost:[0,null],
       location:[null,null],
       eventNo:['',Validators.required],
-      date:[null,null]
+      date:[null,null],
+      userId:[null,null]
     })
     this.service.getVehicleById(parseInt(pId))
     .subscribe(data=>{

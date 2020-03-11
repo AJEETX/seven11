@@ -60,13 +60,13 @@ export class ProductListComponent implements OnInit {
   }
   addProduct():void{
     this.loading=true
-    this.router.navigate(['add-product'])
+    this.router.navigate(['add-vehicle'])
   }
   editProduct(product: Vehicle): void {
     this.loading=true
     localStorage.removeItem("pid");
     localStorage.setItem("pid", product.pId.toString());
-    this.router.navigate(['edit-product']);
+    this.router.navigate(['edit-vehicle']);
   };
   deleteProduct(product: Vehicle): void {
     this.loading=true
@@ -87,9 +87,9 @@ export class ProductListComponent implements OnInit {
   }
   setMyStyles(product) {
     let styles = {
-      'color': product.watch ? 'white' : 'black',
+      // 'color': product.watch ? 'white' : 'black',
       'font-size': '.8em',
-      'background-color':product.watch ?'red':'white'
+      'background-color':product.watch ?'#fed8b1':'white'
     };
     return styles;
   }

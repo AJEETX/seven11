@@ -19,9 +19,9 @@ export class VehicleService {
   publicIP;
 
   constructor(private http:HttpClient) { 
-    this.http.get('https://api.ipify.org?format=json').subscribe(data => {
-      this.publicIP=data['ip'];
-    });
+    // this.http.get('https://api.ipify.org?format=json').subscribe(data => {
+    //   this.publicIP=data['ip'];
+    // });
   }
   getVehicles(query?:string){
     return this.http.get<Vehicle[]>(this.baseUrl+ '?q='+query);
@@ -31,6 +31,7 @@ export class VehicleService {
     return this.http.get<Vehicle>(this.baseUrl+ '/' + pId)
   }
   addVehicle(vehicle:Vehicle){
+    vehicle.userId=localStorage.getItem('userId')
     return this.http.post(this.baseUrl,vehicle)
   }
   editVehicle(vehicle:Vehicle){
