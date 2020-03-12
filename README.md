@@ -43,7 +43,7 @@ https://randomnerdtutorials.com/car-plate-recognition-system-with-raspberry-pi-a
 
 
 ## open alnpr nodejs sample
-
+```
 const  OpenALPR  =  require('@alicilin/openalpr');
 const  path  =  require('path');
 const  alpr  =  new  OpenALPR(4);
@@ -55,3 +55,4 @@ async function  main(){
 }
 
 main().catch(x  =>  console.log(x.message));
+```
