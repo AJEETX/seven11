@@ -13,6 +13,7 @@ import { DatepickerOptions } from 'ng2-datepicker';
 export class EditProductComponent implements OnInit {
 formEdit:FormGroup
 user:string
+userId:string
 loading=false
 error :any={error:''};
 
@@ -34,6 +35,8 @@ public maxDate: Date = new Date ();
 
   constructor(private datePipe: DatePipe,private formBuilder:FormBuilder,private service:VehicleService,private router:Router) { 
     this.user=localStorage.getItem('user')
+    if(localStorage.getItem('userId'))
+    this.userId=localStorage.getItem('userId')
   }
   ngOnInit() {
     let pId= localStorage.getItem('pid')
@@ -47,7 +50,8 @@ public maxDate: Date = new Date ();
       amountlost:[0,null],
       location:[null,null],
       eventNo:['',Validators.required],
-      date:[null,null]
+      date:[null,null],
+      userId:[this.userId]
     })
     this.service.getVehicleById(parseInt(pId))
     .subscribe(data=>{
