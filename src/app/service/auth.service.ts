@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User, UserInfo } from '../product';
+import { User, UserInfo } from '../model';
 import { map } from 'rxjs/operators';
 import {Config} from '../../configuration/config';
 @Injectable({
@@ -18,7 +18,8 @@ export class AuthService {
           localStorage.setItem('username', user.username);
           localStorage.setItem('user', user.firstName+' '+user.lastName);
           localStorage.setItem('roles', user.roles);
-          localStorage.setItem('userId', user.id);
+          localStorage.setItem('userId', user.userId);
+          localStorage.setItem('location', user.location);
       }
       return user;
   },

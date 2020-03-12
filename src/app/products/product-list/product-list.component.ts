@@ -1,5 +1,5 @@
 import { VehicleService } from '../../service/vehicle.service';
-import { Vehicle } from './../../product';
+import { Vehicle } from '../../model';
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import { FormControl } from '@angular/forms';
@@ -13,6 +13,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 export class ProductListComponent implements OnInit {
   products:Vehicle[]
   user:string
+  userId:string
   admin:boolean
   loading=false
   error=''
@@ -34,6 +35,8 @@ export class ProductListComponent implements OnInit {
 
     if(localStorage.getItem('user'))
     this.user=localStorage.getItem('user')
+    if(localStorage.getItem('userId'))
+    this.userId=localStorage.getItem('userId')
     this.service.getVehicles()
     .subscribe(data=>{
         this.products=data

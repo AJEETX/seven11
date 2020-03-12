@@ -1,4 +1,4 @@
-import { User } from './../../product';
+import { User } from '../../model';
 import { AuthService } from './../../service/auth.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';

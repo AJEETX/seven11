@@ -68,8 +68,10 @@
           <td>{{product.date | date : "dd-MMM-y"}}</td>
           <!-- <td>{{product.time}}</td> -->
           <td>
-            <i class="fa fa-pencil-square-o icon-size-edit" aria-hidden="true" (click)="editProduct(product)"></i>
+            <span *ngIf="userId==product.userId">
+            <i class="fa fa-pencil-square-o icon-size-edit cursor" aria-hidden="true" (click)="editProduct(product)"></i>
             <i class="fa fa-trash-o left icon-size-delete" (click)="deleteProduct(product)" ></i>
+          </span>
           </td>        
         </tbody>
       </table>

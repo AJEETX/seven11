@@ -101,10 +101,10 @@ span{
     .heavy { font: bold 8 sans-serif; }
     .Rrrrr { fill: red; text-shadow: 1px 1px 1px grey;}
     .icon-size-edit{
-        font-size:25px;
+        font-size:20px;
     }
     .icon-size-delete{
-        font-size:25px;
+        font-size:20px;
     }
     .watch{
         float: left;

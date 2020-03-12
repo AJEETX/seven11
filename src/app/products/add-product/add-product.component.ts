@@ -17,6 +17,7 @@ export class AddProductComponent implements OnInit {
   message:string
   loading = false;
   error :any;
+  location:string
 
   options: DatepickerOptions = {
     minYear: 1970,
@@ -40,6 +41,7 @@ export class AddProductComponent implements OnInit {
     private service:VehicleService,
     private router:Router,private atp: AmazingTimePickerService) {
     this.user=localStorage.getItem('user')
+    this.location=localStorage.getItem('location')
    }
 
   ngOnInit() {
@@ -51,7 +53,7 @@ export class AddProductComponent implements OnInit {
       detail:[null,null],
       date:[new Date(),null],
       amountlost:[0,null],
-      location:[null,null],
+      location:[this.location,null],
       eventno:['',Validators.required],
       time:[null,null]
     })

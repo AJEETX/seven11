@@ -1,4 +1,4 @@
-import { Vehicle } from '../product';
+import { Vehicle } from '../model'
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import {Config} from '../../configuration/config';
@@ -24,13 +24,15 @@ export class VehicleService {
     // });
   }
   getVehicles(query?:string){
-    return this.http.get<Vehicle[]>(this.baseUrl+ '?q='+query);
+    var userid=localStorage.getItem('userId')
+    return this.http.get<Vehicle[]>(this.baseUrl+ '/'+userid+'/'+query);
   }
   getVehicleById(pId:number){
     localStorage.setItem('pid',pId.toString())
     return this.http.get<Vehicle>(this.baseUrl+ '/' + pId)
   }
   addVehicle(vehicle:Vehicle){
+    vehicle.userid=localStorage.getItem('userId')
     return this.http.post(this.baseUrl,vehicle)
   }
   editVehicle(vehicle:Vehicle){
