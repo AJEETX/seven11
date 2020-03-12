@@ -40,3 +40,18 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## read this link
 https://randomnerdtutorials.com/car-plate-recognition-system-with-raspberry-pi-and-node-red/
+
+
+## open alnpr nodejs sample
+
+const  OpenALPR  =  require('@alicilin/openalpr');
+const  path  =  require('path');
+const  alpr  =  new  OpenALPR(4);
+async function  main(){
+    let carimage=path.join(__dirname, 'nsww.jpg');
+    alpr.recognize(carimage, { c:  'au' }).then(
+        res=>console.log(res),
+        err=>console.log(err));
+}
+
+main().catch(x  =>  console.log(x.message));
