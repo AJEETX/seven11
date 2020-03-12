@@ -37,20 +37,20 @@
       <thead>
         <tr>
           <!-- <th class="hidden">Id</th> -->
-          <th (click)="sort('name')">Rego
-            <span class="glyphicon sort-icon" *ngIf="key =='name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          <th class="cursor" (click)="sort('name')">Rego
+            <i class="fa fa-sort" aria-hidden="true"></i>
           </th>
           <!-- <th (click)="sort('eventno')">Event No
             <span class="glyphicon sort-icon" *ngIf="key =='eventno'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
           </th> -->
-          <th (click)="sort('amountlost')">Money
-            <span class="glyphicon sort-icon" *ngIf="key =='amountlost'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          <th class="cursor" (click)="sort('amountlost')">Money
+            <i class="fa fa-sort" aria-hidden="true"></i>
           </th>
-          <th (click)="sort('location')">Location
-            <span class="glyphicon sort-icon" *ngIf="key =='location'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          <th class="cursor" (click)="sort('location')">Location
+            <i class="fa fa-sort" aria-hidden="true"></i>
           </th>
-          <th (click)="sort('date')">Date
-            <span class="glyphicon sort-icon" *ngIf="key =='date'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          <th class="cursor" (click)="sort('date')">Date
+            <i class="fa fa-sort" aria-hidden="true"></i>
           </th>
           <!-- <th (click)="sort('time')">Time
             <span class="glyphicon sort-icon" *ngIf="key =='time'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
