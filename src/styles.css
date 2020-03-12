@@ -1,5 +1,14 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
-
+@media only screen and (max-width: 320px) {
+    body {
+      width: 100%;
+    }
+    .top{
+        min-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+  }
 .username{
     color:#007bff;
     font-weight: bold;
@@ -69,8 +78,7 @@ span{
     padding:10px;
     background-color: #eee;
     border-radius: 10px;
-    max-width: 95%;
-    min-width: 450px;
+    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
 }
