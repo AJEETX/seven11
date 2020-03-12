@@ -16,7 +16,7 @@ export class AddProductComponent implements OnInit {
   user:string
   message:string
   loading = false;
-  error :any;
+  error :any={error:''};
   location:string
 
   options: DatepickerOptions = {
@@ -73,7 +73,13 @@ export class AddProductComponent implements OnInit {
       this.router.navigate([''])
     },
     error => {
+      if(error && error.status==400){
         this.error = error;
+      }else{
+        this.error={
+          error:'some error'
+        }
+      }
         this.loading = false;
         this.router.navigate(['/login'])
       })

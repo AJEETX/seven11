@@ -16,7 +16,8 @@ export class ProductListComponent implements OnInit {
   userId:string
   admin:boolean
   loading=false
-  error=''
+  error :any={error:''};
+
   searchField: FormControl
   searches: string[] = [];
   colordanger:'red'
@@ -80,7 +81,13 @@ export class ProductListComponent implements OnInit {
         this.products = this.products.filter(u => u !== product);
       },
       error => {
+        if(error && error.status==400){
           this.error = error;
+        }else{
+          this.error={
+            error:'some error'
+          }
+        }
           this.loading = false;
       })
   };

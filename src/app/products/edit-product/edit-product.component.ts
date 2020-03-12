@@ -14,7 +14,7 @@ export class EditProductComponent implements OnInit {
 formEdit:FormGroup
 user:string
 loading=false
-error :any;
+error :any={error:''};
 
 options: DatepickerOptions = {
   displayFormat: 'MMM D[,] YYYY',
@@ -68,7 +68,13 @@ public maxDate: Date = new Date ();
       this.router.navigate([''])
     },
     error => {
+      if(error && error.status==400){
         this.error = error;
+      }else{
+        this.error={
+          error:'some error'
+        }
+      }
         this.loading = false;
     });
   }

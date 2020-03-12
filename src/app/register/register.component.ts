@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup
   loading = false;
   submitted = false;
-  error = '';
+  error :any={error:''};
   constructor( private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router,
     private authservice:AuthService) { }
 
@@ -43,7 +43,13 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['login'])
       },
       error=>{
-        this.error=error
+        if(error && error.status==400){
+          this.error = error;
+        }else{
+          this.error={
+            error:'some error'
+          }
+        }
         this.submitted = false;
         this.loading = false;
     })

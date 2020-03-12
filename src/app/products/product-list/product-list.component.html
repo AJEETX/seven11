@@ -1,5 +1,5 @@
 <div class="top">
-    <div class=error >{{error}}</div >
+    <div class=error >{{error.error}}</div >
       <div class="alignright">
         <div class="nothing">  
         </div>
@@ -70,7 +70,7 @@
           <td>
             <span *ngIf="userId==product.userId">
             <i class="fa fa-pencil-square-o icon-size-edit cursor" aria-hidden="true" (click)="editProduct(product)"></i>
-            <i class="fa fa-trash-o left icon-size-delete" (click)="deleteProduct(product)" ></i>
+            <i class="fa fa-trash-o left icon-size-delete cursor" (click)="deleteProduct(product)" ></i>
           </span>
           </td>        
         </tbody>
