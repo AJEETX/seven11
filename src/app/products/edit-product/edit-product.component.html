@@ -33,9 +33,6 @@
   <div class="form-group">
     <label for="time">Drive off time</label>
     <input type="time" id="time" name="time" formControlName="time" atp-time-picker value="00:00" class="form-control" />
-  </div>      
-    <div class="watch form-group">
-      <label id="danger">Drive Off:<input formControlName="watch" type="checkbox" id="watch" placeholder="is special" name="watch" class="form-control"  /></label>
   </div>
   <div class="form-group">
     <label for="date">Drive off date</label>
@@ -44,7 +41,11 @@
     <!-- <my-date-picker id="date" name="date" class="form-control" formControlName="date" placeholder="Select a date dd-MM-yyyy" max='maxDate' [options]="myDatePickerOptions" ></my-date-picker> -->
     <!-- <ejs-datepicker id="date" name="date" formControlName="date" placeholder='Select a date' format ='dd-MMM-yyyy' [max]='maxDate'></ejs-datepicker> -->
     <ng-datepicker id="date" name="date"  formControlName="date"  ></ng-datepicker>
+  </div>      
+    <div class="form-group">
+      <label id="danger">Drive Off:<input formControlName="watch" type="checkbox" id="watch" placeholder="is special" name="watch" class="form-control"  /></label>
   </div>
+
   <div class="form-group">
     <label for="eventno">Event number</label>
     <input type="text" id="eventNo" formControlName="eventNo" class="form-control" placeholder="enter event no" name="eventNo" />

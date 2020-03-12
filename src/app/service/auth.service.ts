@@ -55,7 +55,7 @@ export class AuthService {
     return this.http.post<any>(this.baseUrl+ '/register',{ firstname,lastname, username,location, password })
     }
   update(user:UserInfo){
-    localStorage.removeItem('user')
+    // localStorage.removeItem('user')
     localStorage.setItem('user', user.firstname+' '+user.lastname);
     console.log(this.baseUrl)
     return this.http.put(this.baseUrl+'/'+user.Id,user);

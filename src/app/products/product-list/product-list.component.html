@@ -40,15 +40,15 @@
           <th (click)="sort('name')">Rego
             <span class="glyphicon sort-icon" *ngIf="key =='name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
           </th>
-          <th (click)="sort('eventno')">Event No
+          <!-- <th (click)="sort('eventno')">Event No
             <span class="glyphicon sort-icon" *ngIf="key =='eventno'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-          </th>
+          </th> -->
           <th (click)="sort('amountlost')">Money
             <span class="glyphicon sort-icon" *ngIf="key =='amountlost'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
           </th>
-          <!-- <th (click)="sort('location')">Location
+          <th (click)="sort('location')">Location
             <span class="glyphicon sort-icon" *ngIf="key =='location'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-          </th> -->
+          </th>
           <th (click)="sort('date')">Date
             <span class="glyphicon sort-icon" *ngIf="key =='date'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
           </th>
@@ -62,9 +62,9 @@
         <tr *ngFor="let product of products | orderBy: key : reverse | paginate: { itemsPerPage: 20, currentPage: p }; let i = index" [ngStyle]="setMyStyles(product) ">
           <td style="display:none">{{product.pId}}</td>
           <td>{{product.name}}</td>
-          <td>{{product.eventNo}}</td>
+          <!-- <td>{{product.eventNo}}</td> -->
           <td>{{product.amountlost | currency:'$'}}</td>
-          <!-- <td>{{product.location}}</td> -->
+          <td>{{product.location}}</td>
           <td>{{product.date | date : "dd-MMM-y"}}</td>
           <!-- <td>{{product.time}}</td> -->
           <td>

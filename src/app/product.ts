@@ -19,7 +19,7 @@ export class User{
     Token:string 
 }
 export class UserInfo{
-    Id:number
+    Id:string
     username:string
     firstname:string
     lastname:string
