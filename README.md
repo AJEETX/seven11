@@ -38,3 +38,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     removed from package.json
          "start": "ng serve --port 5050 -o --ssl --ssl-key d\":\\\\certificates\\\\localhost.key  --ssl-cert d\":\\\\certificates\\\\certificate.crt",
 
+## read this link
+https://randomnerdtutorials.com/car-plate-recognition-system-with-raspberry-pi-and-node-red/
