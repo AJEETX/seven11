@@ -76,7 +76,7 @@ public maxDate: Date = new Date ();
         this.error = error;
       }else{
         this.error={
-          error:'some error'
+          error:'Server error'
         }
       }
         this.loading = false;

@@ -9,6 +9,9 @@
         margin-right: auto;
     }
   }
+  .form-control{
+      background-color: #FFFFBF;
+  }
 .username{
     color:#007bff;
     font-weight: bold;
@@ -73,15 +76,14 @@ span{
     text-align: left;
     margin-bottom: 10px;
     }
-.top{
-    border:1px solid white;
-    padding:10px;
-    background-color: #eee;
-    border-radius: 10px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-}
+    .top{
+        border:1px solid white;
+        padding:3px;
+        border-radius: 10px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 .listtop{
     border:1px solid white;
     padding:10px 40px;
@@ -110,6 +112,9 @@ span{
     .Rrrrr { fill: red; text-shadow: 1px 1px 1px grey;}
     .icon-size-edit{
         font-size:20px;
+    }
+    .icon-size-edit-header{
+        font-size:8px;
     }
     .icon-size-delete{
         font-size:20px;
