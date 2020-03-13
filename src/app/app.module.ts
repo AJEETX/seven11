@@ -22,6 +22,7 @@ import {DisableControlDirective} from './DisableControlDirective'
 import { MyDatePickerModule } from 'mydatepicker';
 import { NgDatepickerModule } from 'ng2-datepicker';
 import { DatePipe, CurrencyPipe } from '@angular/common';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,8 @@ import { DatePipe, CurrencyPipe } from '@angular/common';
     Ng2OrderModule,
     NgxPaginationModule,
     MyDatePickerModule ,
-    NgDatepickerModule
+    NgDatepickerModule,
+    Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

@@ -2,6 +2,8 @@ import { AuthService } from './../service/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,7 +16,7 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   error :any={error:''};
   constructor( private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router,
-    private authservice:AuthService) { }
+    private authservice:AuthService,private spinnerService: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
+        this.spinnerService.show();
         this.authservice.login(this.f.username.value, this.f.password.value)
           .subscribe( data => {
             if(this.authservice.loggedIn())
@@ -54,6 +57,7 @@ export class LoginComponent implements OnInit {
                   }
                 }
                   this.loading = false;
+                  this.spinnerService.hide();
               });
     }
 }

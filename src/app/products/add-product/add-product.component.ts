@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AmazingTimePickerService } from 'amazing-time-picker';
 import { DatepickerOptions } from 'ng2-datepicker';
 import { CurrencyPipe } from '@angular/common';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-add-product',
@@ -40,7 +41,8 @@ export class AddProductComponent implements OnInit {
   constructor(private currencyPipe : CurrencyPipe,
     private formBuilder:FormBuilder,
     private service:VehicleService,
-    private router:Router,private atp: AmazingTimePickerService) {
+    private router:Router,private atp: AmazingTimePickerService,
+    private spinnerService: Ng4LoadingSpinnerService) {
     this.user=localStorage.getItem('user')
     this.location=localStorage.getItem('location')
     if(localStorage.getItem('userId'))
@@ -71,8 +73,11 @@ export class AddProductComponent implements OnInit {
   }  
   onSubmit(){
     this.loading = true;
+    this.spinnerService.show();
+
     this.service.addVehicle(this.addForm.value)
     .subscribe(data=>{
+      this.spinnerService.hide()
       this.message=data['name'] +'added'
       this.router.navigate([''])
     },
@@ -86,6 +91,7 @@ export class AddProductComponent implements OnInit {
       }
         this.loading = false;
         this.router.navigate(['/login'])
+        this.spinnerService.hide()
       })
   }
   open(ev: any) {

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,8 @@ export class RegisterComponent implements OnInit {
   loading = false;
   submitted = false;
   error :any={error:''};
-  constructor( private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router,
+  constructor( private formBuilder: FormBuilder, private route: ActivatedRoute, 
+    private router: Router,private spinnerService: Ng4LoadingSpinnerService,
     private authservice:AuthService) { }
 
   ngOnInit() {
@@ -34,12 +36,13 @@ export class RegisterComponent implements OnInit {
       if (this.registerForm.invalid) {
           return;
       }
-
+      this.spinnerService.show()
       this.loading = true;
      this.authservice.register(this.f.firstname.value,this.f.lastname.value,this.f.username.value, this.f.location.value,
       this.f.password.value)
       .subscribe(data=>{
         console.log(data)
+        this.spinnerService.hide()
         this.router.navigate(['login'])
       },
       error=>{
@@ -51,6 +54,7 @@ export class RegisterComponent implements OnInit {
           }
         }
         this.submitted = false;
+        this.spinnerService.hide()
         this.loading = false;
     })
     }

@@ -30,6 +30,7 @@
     "mydatepicker": "^2.6.9",
     "ng2-datepicker": "^3.1.1",
     "ng2-order-pipe": "^0.1.5",
+    "ng4-loading-spinner": "^1.2.3",
     "ngx-pagination": "^5.0.0",
     "path": "^0.12.7",
     "rxjs": "~6.2.0",

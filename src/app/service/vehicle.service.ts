@@ -25,6 +25,9 @@ export class VehicleService {
   }
   getVehicles(query?:string){
     var userid=localStorage.getItem('userId')
+    if(query==""){
+      query="undefined"
+    }
     return this.http.get<Vehicle[]>(this.baseUrl+ '/'+userid+'/'+query);
   }
   getVehicleById(pId:number){

@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import {DisableControlDirective} from '../../DisableControlDirective'
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -19,7 +20,8 @@ userdisabled=true;
 username:string
 disableControl:DisableControlDirective
 error = '';
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router,
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, 
+    private router: Router,private spinnerService: Ng4LoadingSpinnerService,
     private authservice:AuthService) { 
       this.userForm = this.formBuilder.group({
         id:[],
@@ -30,10 +32,12 @@ error = '';
     });
     if(localStorage.getItem('user') && localStorage.getItem('username'))
     this.user=localStorage.getItem('user')
+    this.spinnerService.show();
     this.username=localStorage.getItem('username')
       this.authservice.getUserById()
        .subscribe(data=>{
          this.userForm.setValue(data)
+         this.spinnerService.hide()
        },
        error=>{
          this.error=error
@@ -45,9 +49,12 @@ error = '';
   onSubmit() {
     this.submitted = true;
     this.loading = true;
+    this.spinnerService.show();
 
     this.authservice.update(this.userForm.value)
     .subscribe(data=>{
+    this.spinnerService.hide();
+
       this.router.navigate([''])
     })
   }

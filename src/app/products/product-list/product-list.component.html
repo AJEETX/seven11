@@ -13,9 +13,12 @@
       <div class="log">
         <a [routerLink]="['/login']" class="farleft" ><i class="fa fa-power-off right"></i>Logout</a>
       </div>
-      <div class="alignleft">
+    </div>
+<div class="alignleft">
         <button class="btn btn-primary" (click)="addProduct()"><i class="fa fa-plus-square right"></i>Add Drive Off</button>
       </div>
+    <div>
+
 <div class="search">
   <input type="search" class="form-control" placeholder="type to search ..." [formControl]="searchField" >
   <ul>
@@ -31,8 +34,6 @@
     <text x="135" y="10" class="heavy Rrrrr">Vehicles</text>
   </svg>
 </div>
-<div *ngIf="loading"><i class="fa fa-spinner"></i></div>  
-
 <table class="table table-striped">
       <thead>
         <tr>

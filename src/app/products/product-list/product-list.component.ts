@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-product-list',
@@ -31,8 +32,9 @@ export class ProductListComponent implements OnInit {
     }
   p: number = 1;
 
-  constructor(private router:Router, private service:VehicleService) {
+  constructor(private router:Router, private service:VehicleService,private spinnerService: Ng4LoadingSpinnerService) {
     this.loading=true
+    this.spinnerService.show();
 
     if(localStorage.getItem('user'))
     this.user=localStorage.getItem('user')
@@ -42,11 +44,12 @@ export class ProductListComponent implements OnInit {
     .subscribe(data=>{
         this.products=data
         this.loading=false
-
+        this.spinnerService.hide()
     })
    }
   ngOnInit() {
     this.loading=true
+    this.spinnerService.show();
     this.searchField = new FormControl()
     this.searchField.valueChanges
     .pipe(
@@ -54,31 +57,37 @@ export class ProductListComponent implements OnInit {
       distinctUntilChanged()
     )
     .subscribe(term => {
-      this.service.getVehicles(term)
+    this.spinnerService.show();
+    this.service.getVehicles(term)
       .subscribe(data=>{
         console.log(data)
         this.loading=false
+        this.spinnerService.hide()
         this.products=data
       })
     });
   }
   addProduct():void{
     this.loading=true
+    this.spinnerService.show();
     this.router.navigate(['add-vehicle'])
   }
   editProduct(product: Vehicle): void {
     this.loading=true
+    this.spinnerService.show();
     localStorage.removeItem("pid");
     localStorage.setItem("pid", product.pId.toString());
     this.router.navigate(['edit-vehicle']);
   };
   deleteProduct(product: Vehicle): void {
     this.loading=true
+    this.spinnerService.show();
 
     this.service.delete(product.pId)
       .subscribe( data => {
       this.loading=false
-        this.products = this.products.filter(u => u !== product);
+    this.spinnerService.hide();
+    this.products = this.products.filter(u => u !== product);
       },
       error => {
         if(error && error.status==400){
@@ -89,7 +98,8 @@ export class ProductListComponent implements OnInit {
           }
         }
           this.loading = false;
-      })
+          this.spinnerService.hide();
+  })
   };
   getUserDetail(){
     var id=localStorage.getItem('id')

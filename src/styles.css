@@ -25,7 +25,7 @@
     margin-left: 5px;
 }
 .farleft{
-    background-color: #eee;
+    background-color: white;
     padding: 6px 3px;
     border-radius: 8px;
     border:1px solid #fff;
@@ -97,6 +97,7 @@ span{
         max-width: 500px;
         margin-left: auto;
         margin-right: auto;
+        background-color: #F8F8FF;
     }
 .listtop{
     border:1px solid white;
@@ -130,6 +131,11 @@ span{
     .table-header{
         font-size:25px;
         margin-right: 10px;
+    }
+    .spinner-size{
+        font-size: 2rem;
+        margin-bottom: -50% 35%;
+        z-index: 999;
     }
     .icon-size-edit-header-money{
         font-size:12px;

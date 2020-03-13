@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { DatepickerOptions } from 'ng2-datepicker';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-edit-product',
@@ -33,7 +34,9 @@ options: DatepickerOptions = {
 };
 public maxDate: Date = new Date ();
 
-  constructor(private datePipe: DatePipe,private formBuilder:FormBuilder,private service:VehicleService,private router:Router) { 
+  constructor(private datePipe: DatePipe,private formBuilder:FormBuilder,
+    private service:VehicleService,private router:Router,
+    private spinnerService: Ng4LoadingSpinnerService) { 
     this.user=localStorage.getItem('user')
     if(localStorage.getItem('userId'))
     this.userId=localStorage.getItem('userId')
@@ -53,8 +56,10 @@ public maxDate: Date = new Date ();
       date:[null,null],
       userId:[this.userId]
     })
+    this.spinnerService.show()
     this.service.getVehicleById(parseInt(pId))
     .subscribe(data=>{
+      this.spinnerService.hide()
       let currentDate = new DatePipe('en-US').transform(data.date, 'yyyy/MM/dd');
       console.log(currentDate)
       data.date=new Date(currentDate);
@@ -64,12 +69,14 @@ public maxDate: Date = new Date ();
   }
   onSubmit(){
     this.loading = true;
+    this.spinnerService.show();
     if(this.formEdit.invalid)
       return;
     this.service.editVehicle(this.formEdit.value)
     .subscribe(data=>{
       this.loading = false;
-      this.router.navigate([''])
+        this.spinnerService.hide()
+        this.router.navigate([''])
     },
     error => {
       if(error && error.status==400){
@@ -80,6 +87,7 @@ public maxDate: Date = new Date ();
         }
       }
         this.loading = false;
+        this.spinnerService.hide()
     });
   }
   back(){
