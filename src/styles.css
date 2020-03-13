@@ -25,19 +25,24 @@
     margin-left: 5px;
 }
 .farleft{
-    background-color: white;
+    background-color: #eee;
     padding: 6px 3px;
     border-radius: 8px;
-    border:2px solid #fff;
+    border:1px solid #fff;
 }
 .farleft:hover{
     background-color: #007bff;
     color: white;
     text-decoration: none;
 }
-table{
+.table{
     border-radius: 8px;
     border:1px outset white;
+    text-align: left;
+}
+.table td{
+    padding: .5rem .1rem;
+    font-weight: bold;
 }
 th{
     background-color: white; 
@@ -45,6 +50,15 @@ th{
     color: #000;
     font-size: .9rem;
     text-shadow: 1px 1px 1px grey;
+    width: 22%;
+}
+th.less-width{
+    width:12%;
+}
+label{
+    margin-bottom: 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
 }
 .cursor{
     cursor: pointer;
@@ -113,8 +127,12 @@ span{
     .icon-size-edit{
         font-size:20px;
     }
-    .icon-size-edit-header{
-        font-size:8px;
+    .table-header{
+        font-size:25px;
+        margin-right: 10px;
+    }
+    .icon-size-edit-header-money{
+        font-size:12px;
     }
     .icon-size-delete{
         font-size:20px;

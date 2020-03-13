@@ -37,26 +37,28 @@
       <thead>
         <tr>
           <!-- <th class="hidden">Id</th> -->
-          <th class="cursor" (click)="sort('name')">Rego
+          <th class="cursor" (click)="sort('name')">
+            <i class="fa fa-car table-header" aria-hidden="true"></i>
             <i class="fa fa-sort" aria-hidden="true"></i>
           </th>
           <!-- <th (click)="sort('eventno')">Event No
-            <span class="glyphicon sort-icon" *ngIf="key =='eventno'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
           </th> -->
-          <th class="cursor" (click)="sort('amountlost')"><i class="fas fa-dollar-sign"></i>
+          <th class="cursor" (click)="sort('amountlost')">
+            <i class="fa fa-dollar table-header" aria-hidden="true"></i>
             <i class="fa fa-sort" aria-hidden="true"></i>
           </th>
           <th class="cursor" (click)="sort('location')">
-            <i class="icon-size-edit-header relative mb3 w-100 link color-inherit hover-indigo6 flex flex-column justify-center items-center"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="map-marker-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="svg-inline--fa fa-map-marker-alt fa-w-12 fa-fw fa-2x"><path fill="currentColor" d="M192 0C85.903 0 0 86.014 0 192c0 71.117 23.991 93.341 151.271 297.424 18.785 30.119 62.694 30.083 81.457 0C360.075 285.234 384 263.103 384 192 384 85.903 297.986 0 192 0zm0 464C64.576 259.686 48 246.788 48 192c0-79.529 64.471-144 144-144s144 64.471 144 144c0 54.553-15.166 65.425-144 272zm-80-272c0-44.183 35.817-80 80-80s80 35.817 80 80-35.817 80-80 80-80-35.817-80-80z" class=""></path></svg></i>
+            <i class="fa fa-map-marker table-header"></i>
             <i class="fa fa-sort right" aria-hidden="true"></i>
           </th>
-          <th class="cursor" (click)="sort('date')">Date
+          <th class="cursor" (click)="sort('date')">
+            <i class="fa fa-calendar table-header"></i>
             <i class="fa fa-sort" aria-hidden="true"></i>
           </th>
           <!-- <th (click)="sort('time')">Time
-            <span class="glyphicon sort-icon" *ngIf="key =='time'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
           </th> -->
-          <th>Action</th>
+          <th class="less-width">
+            <i class="fa fa-tasks table-header"></i>
         </tr>
       </thead>
       <tbody>
@@ -70,7 +72,7 @@
           <!-- <td>{{product.time}}</td> -->
           <td>
             <span *ngIf="userId==product.userId">
-            <i class="fa fa-pencil-square-o icon-size-edit cursor" aria-hidden="true" (click)="editProduct(product)"></i>
+            <i class="fa fa-pencil-square-o icon-size-edit cursor" aria-hidden="true" (click)="editProduct(product)"></i> |
             <i class="fa fa-trash-o left icon-size-delete cursor" (click)="deleteProduct(product)" ></i>
           </span>
           </td>        
