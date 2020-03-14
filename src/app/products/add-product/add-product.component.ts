@@ -20,7 +20,7 @@ export class AddProductComponent implements OnInit {
   loading = false;
   error :any={error:''};
   location:string
-
+  public keyword = 'name';
   options: DatepickerOptions = {
     minYear: 1970,
     maxYear: 2030,
@@ -47,10 +47,6 @@ export class AddProductComponent implements OnInit {
     this.location=localStorage.getItem('location')
     if(localStorage.getItem('userId'))
     this.userId=localStorage.getItem('userId')
-   }
-
-  ngOnInit() {
-    this.getIP();
     this.spinnerService.hide()
     this.addForm=this.formBuilder.group({
       id:[Math.random().toString(36).substring(2, 15),null],
@@ -59,11 +55,37 @@ export class AddProductComponent implements OnInit {
       detail:[null,null],
       date:[new Date(),null],
       amountlost:[0,null],
-      location:[this.location,null],
+      location: [this.location, Validators.required],
       eventno:['',Validators.required],
       time:[null,null],
       userId:[this.userId]
     })
+   }
+
+  ngOnInit() {
+
+  }
+  public locations=[
+    {
+      id: 1,
+      name: 'Charlestown',
+    },
+    {
+      id: 2,
+      name: 'New Castle',
+    }
+  ];
+    selectEvent(item) {
+      this.addForm.controls.location.setValue(item.name);
+  }
+
+  onChangeSearch(search: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+  }
+
+  onFocused(e) {
+    // do something
   }
   getIP()  
   {  

@@ -20,35 +20,34 @@
     </div>
     <div class="form-group">
         <label for="location">Location</label>
-        <input type="text" formControlName="location" class="form-control" 
-        [ngClass]="{ 'is-invalid': submitted && f.location.errors }" placeholder="location"/>
+        <ng-autocomplete
+        [data]="locations"
+        [searchKeyword]="keyword"
+        formControlName="location"
+        placeHolder="select location"
+        (selected)='selectEvent($event)'
+        (inputChanged)='onChangeSearch($event)'
+        (inputFocused)='onFocused($event)'
+        historyIdentifier="locations"
+        [itemTemplate]="itemTemplate"
+        [notFoundTemplate]="notFoundTemplate"
+        [ngClass]="{ 'is-invalid': submitted || !location }">
+      </ng-autocomplete>
+    
+      <ng-template #itemTemplate let-item>
+        <a [innerHTML]="item.name"></a>
+      </ng-template>
+    
+      <ng-template #notFoundTemplate let-notFound>
+        <div [innerHTML]="notFound"></div>
+      </ng-template>
     </div>   
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label for="state">State</label>
         <input type="text" formControlName="state" class="form-control" 
         [ngClass]="{ 'is-invalid': submitted && f.state.errors }" placeholder="state"/>
-    </div>    
-    <div class="ng-autocomplete">
-        <ng-autocomplete
-          [data]="countries"
-          [searchKeyword]="keyword"
-          placeHolder="Enter the Country Name"
-          (selected)='selectEvent($event)'
-          (inputChanged)='onChangeSearch($event)'
-          (inputFocused)='onFocused($event)'
-          historyIdentifier="countries"
-          [itemTemplate]="itemTemplate"
-          [notFoundTemplate]="notFoundTemplate">
-        </ng-autocomplete>
-      
-        <ng-template #itemTemplate let-item>
-          <a [innerHTML]="item.name"></a>
-        </ng-template>
-      
-        <ng-template #notFoundTemplate let-notFound>
-          <div [innerHTML]="notFound"></div>
-        </ng-template>
-      </div>    
+    </div>     -->
+
   <div class="form-group">
       <label for="username">Username</label>
       <input type="text" formControlName="username" class="form-control" 
@@ -60,7 +59,7 @@
       [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="password"/>
   </div>
   <div class="form-group">
-      <button [disabled]="loading || !registerForm.valid" class="btn btn-primary right-margin"><i class="fa fa-floppy-o right-margin"></i>Register</button>
+      <button [disabled]="loading || registerForm.invalid " class="btn btn-primary right-margin"><i class="fa fa-floppy-o right-margin"></i>Register</button>
       <a [routerLink]="['/login']">Login</a>
       </div>
 </form>

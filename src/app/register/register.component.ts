@@ -2,7 +2,7 @@ import { AuthService } from './../service/auth.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
@@ -14,21 +14,24 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup
   loading = false;
   submitted = false;
+  location=''
   error :any={error:''};
+  @ViewChild('auto') auto;
+
   constructor( private formBuilder: FormBuilder, private route: ActivatedRoute, 
     private router: Router,private spinnerService: Ng4LoadingSpinnerService,
-    private authservice:AuthService) { }
-
+    private authservice:AuthService) { 
+      this.registerForm = this.formBuilder.group({
+        firstname: ['', Validators.required],
+        lastname: ['', Validators.required],
+        username: ['', Validators.required],
+        password: ['', Validators.required],
+        location: [null, Validators.required]
+      });
+    }
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      location: ['', Validators.required],
-      state:['',null]
-    });
-  this.authservice.logout();
+    // this.auto.select({id: 1, name: 'Charlestown'})
+    this.authservice.logout();
   }
     get f() { return this.registerForm.controls; }
     onSubmit() {
@@ -39,7 +42,7 @@ export class RegisterComponent implements OnInit {
       }
       this.spinnerService.show()
       this.loading = true;
-     this.authservice.register(this.f.firstname.value,this.f.lastname.value,this.f.username.value, this.f.location.value,
+     this.authservice.register(this.f.firstname.value,this.f.lastname.value,this.f.username.value, this.f.location.value.name,
       this.f.password.value)
       .subscribe(data=>{
         console.log(data)
@@ -60,58 +63,52 @@ export class RegisterComponent implements OnInit {
     })
     }
     keyword = 'name';
-    public countries = [
+    public states = [
       {
         id: 1,
-        name: 'Albania',
+        name: 'ACT',
       },
       {
         id: 2,
-        name: 'Belgium',
+        name: 'NSW',
       },
       {
         id: 3,
-        name: 'Denmark',
+        name: 'VIC',
       },
       {
         id: 4,
-        name: 'Montenegro',
+        name: 'QLD',
       },
       {
         id: 5,
-        name: 'Turkey',
+        name: 'SA',
       },
       {
         id: 6,
-        name: 'Ukraine',
+        name: 'WA',
       },
       {
         id: 7,
-        name: 'Macedonia',
+        name: 'NT',
       },
       {
         id: 8,
-        name: 'Slovenia',
+        name: 'TAS',
+      }
+    ];
+    public locations=[
+      {
+        id: 1,
+        name: 'Charlestown',
       },
       {
-        id: 9,
-        name: 'Georgia',
-      },
-      {
-        id: 10,
-        name: 'India',
-      },
-      {
-        id: 11,
-        name: 'Russia',
-      },
-      {
-        id: 12,
-        name: 'Switzerland',
+        id: 2,
+        name: 'New Castle',
       }
     ];
       selectEvent(item) {
-      // do something with selected item
+        this.registerForm.controls.location.setValue(item.name);
     }
   
     onChangeSearch(search: string) {

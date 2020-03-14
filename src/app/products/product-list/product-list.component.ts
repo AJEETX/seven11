@@ -99,6 +99,7 @@ export class ProductListComponent implements OnInit {
         }
           this.loading = false;
           this.spinnerService.hide();
+          this.router.navigate(['/login']);
   })
   };
   getUserDetail(){
