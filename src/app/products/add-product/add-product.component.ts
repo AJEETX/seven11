@@ -64,7 +64,7 @@ export class AddProductComponent implements OnInit {
    }
 
   ngOnInit() {
-
+    this.getIP()
   }
   public locations=[
     {

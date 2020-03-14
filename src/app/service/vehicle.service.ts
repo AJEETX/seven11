@@ -9,8 +9,8 @@ const httpOptions = {
     'Content-Type': 'application/json'
   })
 };
-// const url='https://jsonplaceholder.typicode.com/todos/2'
-const url='https://api.ipify.org'
+// const url='http://ip-api.com/json'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,9 +20,9 @@ export class VehicleService {
   publicIP;
 
   constructor(private http:HttpClient) { 
-    // this.http.get('https://api.ipify.org?format=json').subscribe(data => {
-    //   this.publicIP=data['ip'];
-    // });
+    this.http.get('http://httpbin.org/ip').subscribe(data => {
+      this.publicIP=data;
+    });
   }
   getVehicles(query?:string){
     var userid=localStorage.getItem('userId')
@@ -48,8 +48,13 @@ export class VehicleService {
   }
   public getIPAddress()  
   {  
-    this.http.get(url).subscribe(data => {
-      console.log(data)
+    this.http.get('http://httpbin.org/ip').subscribe(data => {
+      const url='https://ipapi.co/'+data['origin']+'/json'
+      this.http.get(url).subscribe(data => {
+        console.log(data)
+        return data;
+      });
     });
+
   }  
 }
