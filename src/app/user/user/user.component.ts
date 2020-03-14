@@ -18,6 +18,9 @@ loading = false;
 submitted = false;
 userdisabled=true;
 username:string
+keyword = 'name';
+location=''
+
 disableControl:DisableControlDirective
 error = '';
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, 
@@ -50,12 +53,34 @@ error = '';
     this.submitted = true;
     this.loading = true;
     this.spinnerService.show();
-
+    this.userForm.controls.location.setValue(this.userForm.controls.location.value.name)
     this.authservice.update(this.userForm.value)
     .subscribe(data=>{
     this.spinnerService.hide();
 
       this.router.navigate([''])
     })
+  }
+  public locations=[
+    {
+      id: 1,
+      name: 'Charlestown',
+    },
+    {
+      id: 2,
+      name: 'New Castle',
+    }
+  ];
+    selectEvent(item) {
+      this.userForm.controls.location.setValue(item.name);
+  }
+
+  onChangeSearch(search: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+  }
+
+  onFocused(e) {
+    // do something
   }
 }
