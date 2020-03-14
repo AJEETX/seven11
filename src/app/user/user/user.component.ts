@@ -26,25 +26,28 @@ error = '';
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, 
     private router: Router,private spinnerService: Ng4LoadingSpinnerService,
     private authservice:AuthService) { 
-      this.userForm = this.formBuilder.group({
-        id:[],
-        firstname: ['', Validators.required],
-        lastname: ['', Validators.required],
-        username: ['', Validators.required],
-        location: ['', Validators.required]
-    });
-    if(localStorage.getItem('user') && localStorage.getItem('username'))
-    this.user=localStorage.getItem('user')
-    this.spinnerService.show();
-    this.username=localStorage.getItem('username')
-      this.authservice.getUserById()
-       .subscribe(data=>{
-         this.userForm.setValue(data)
-         this.spinnerService.hide()
-       },
-       error=>{
-         this.error=error
-       })
+      if(localStorage.getItem('user') && localStorage.getItem('username')){
+      this.user=localStorage.getItem('user')
+      this.spinnerService.show();
+      this.username=localStorage.getItem('username')
+        this.authservice.getUserById()
+         .subscribe(data=>{
+           this.userForm.setValue(data)
+           this.spinnerService.hide()
+         },
+         error=>{
+           this.error=error
+         })
+        this.userForm = this.formBuilder.group({
+          id:[],
+          firstname: ['', Validators.required],
+          lastname: ['', Validators.required],
+          username: ['', Validators.required],
+          location: ['', Validators.required]
+        });
+      }else{
+        this.router.navigate(['/login']);
+      }
     }
   ngOnInit() {
   }

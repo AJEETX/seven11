@@ -44,23 +44,27 @@ export class AddProductComponent implements OnInit {
     private service:VehicleService,
     private router:Router,private atp: AmazingTimePickerService,
     private spinnerService: Ng4LoadingSpinnerService) {
-    this.user=localStorage.getItem('user')
-    this.location=localStorage.getItem('location')
-    if(localStorage.getItem('userId'))
-    this.userId=localStorage.getItem('userId')
-    this.spinnerService.hide()
-    this.addForm=this.formBuilder.group({
-      id:[Math.random().toString(36).substring(2, 15),null],
-      name:['',Validators.required],
-      watch:[true,null],
-      detail:[null,null],
-      date:[new Date(),null],
-      amountlost:[0,null],
-      location: [this.location, Validators.required],
-      eventno:['',Validators.required],
-      time:[null,null],
-      userId:[this.userId]
-    })
+      if(localStorage.getItem('user')){
+        this.user=localStorage.getItem('user')
+        this.location=localStorage.getItem('location')
+        if(localStorage.getItem('userId'))
+        this.userId=localStorage.getItem('userId')
+        this.spinnerService.hide()
+          this.addForm=this.formBuilder.group({
+            id:[Math.random().toString(36).substring(2, 15),null],
+            name:['',Validators.required],
+            watch:[true,null],
+            detail:[null,null],
+            date:[new Date(),null],
+            amountlost:[0,null],
+            location: [this.location, Validators.required],
+            eventno:['',Validators.required],
+            time:[null,null],
+            userId:[this.userId]
+          })
+    }else{
+      this.router.navigate(['/login']);
+    }
    }
 
   ngOnInit() {

@@ -40,11 +40,15 @@ public maxDate: Date = new Date ();
   constructor(private datePipe: DatePipe,private formBuilder:FormBuilder,
     private service:VehicleService,private router:Router,
     private spinnerService: Ng4LoadingSpinnerService) { 
+      if(localStorage.getItem('user')){
     this.user=localStorage.getItem('user')
     if(localStorage.getItem('userId'))
     this.userId=localStorage.getItem('userId')
     if(localStorage.getItem('location'))
     this.location=localStorage.getItem('location')
+      }else{
+      this.router.navigate(['/login']);
+      }
   }
   ngOnInit() {
     let pId= localStorage.getItem('pid')

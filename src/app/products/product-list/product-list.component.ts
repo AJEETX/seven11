@@ -33,19 +33,22 @@ export class ProductListComponent implements OnInit {
   p: number = 1;
 
   constructor(private router:Router, private service:VehicleService,private spinnerService: Ng4LoadingSpinnerService) {
-    this.loading=true
-    this.spinnerService.show();
-
-    if(localStorage.getItem('user'))
-    this.user=localStorage.getItem('user')
-    if(localStorage.getItem('userId'))
-    this.userId=localStorage.getItem('userId')
-    this.service.getVehicles()
-    .subscribe(data=>{
-        this.products=data
-        this.loading=false
-        this.spinnerService.hide()
-    })
+    if(localStorage.getItem('user')){
+      this.loading=true
+      this.spinnerService.show();
+     this.user=localStorage.getItem('user')
+      if(localStorage.getItem('userId'))
+      this.userId=localStorage.getItem('userId')
+      this.service.getVehicles()
+      .subscribe(data=>{
+          this.products=data
+          this.loading=false
+          this.spinnerService.hide()
+      })     
+    }
+    else{
+      this.router.navigate(['/login']);
+    }
    }
   ngOnInit() {
     this.loading=true
