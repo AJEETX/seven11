@@ -54,11 +54,30 @@
     <label for="amountlost">Amount</label>
     <input type="number" id="amountlost" formControlName="amountlost" class="form-control" placeholder="enter money lost" name="amountlost" />
     </div>
-
     <div class="form-group">
-    <label for="location">Drive off location</label>
-    <input type="text" id="location" formControlName="location" class="form-control" placeholder="enter location" name="location" />
-    </div>
+      <label for="location">Location</label>
+      <ng-autocomplete
+      [data]="locations"
+      [searchKeyword]="keyword"
+      formControlName="location"
+      placeHolder="select location"
+      (selected)='selectEvent($event)'
+      (inputChanged)='onChangeSearch($event)'
+      (inputFocused)='onFocused($event)'
+      historyIdentifier="locations"
+      [itemTemplate]="itemTemplate"
+      [notFoundTemplate]="notFoundTemplate"
+      [ngClass]="{ 'is-invalid': submitted || !location }">
+    </ng-autocomplete>
+  
+    <ng-template #itemTemplate let-item>
+      <a [innerHTML]="item.name"></a>
+    </ng-template>
+  
+    <ng-template #notFoundTemplate let-notFound>
+      <div [innerHTML]="notFound"></div>
+    </ng-template>
+  </div>  
     <div class="form-group">
     <label for="detail">Status / Comments</label>
     <textarea type="text" id="detail" formControlName="detail" class="form-control" placeholder="enter Status / Comments" name="detail"></textarea>

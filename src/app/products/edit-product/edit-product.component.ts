@@ -17,6 +17,8 @@ user:string
 userId:string
 loading=false
 error :any={error:''};
+keyword = 'name';
+location:string
 
 options: DatepickerOptions = {
   displayFormat: 'MMM D[,] YYYY',
@@ -40,6 +42,8 @@ public maxDate: Date = new Date ();
     this.user=localStorage.getItem('user')
     if(localStorage.getItem('userId'))
     this.userId=localStorage.getItem('userId')
+    if(localStorage.getItem('location'))
+    this.location=localStorage.getItem('location')
   }
   ngOnInit() {
     let pId= localStorage.getItem('pid')
@@ -51,7 +55,7 @@ public maxDate: Date = new Date ();
       detail:[null,null],
       time:[null,null],
       amountlost:[0,null],
-      location:[null,null],
+      location:[this.location,Validators.required],
       eventNo:['',Validators.required],
       date:[null,null],
       userId:[this.userId]
@@ -72,6 +76,8 @@ public maxDate: Date = new Date ();
     this.spinnerService.show();
     if(this.formEdit.invalid)
       return;
+    this.formEdit.controls.location.setValue(this.formEdit.controls.location.value.name)
+
     this.service.editVehicle(this.formEdit.value)
     .subscribe(data=>{
       this.loading = false;
@@ -93,5 +99,27 @@ public maxDate: Date = new Date ();
   }
   back(){
     this.router.navigate([''])
+  }
+  public locations=[
+    {
+      id: 1,
+      name: 'Charlestown',
+    },
+    {
+      id: 2,
+      name: 'New Castle',
+    }
+  ];
+    selectEvent(item) {
+      this.formEdit.controls.location.setValue(item.name);
+  }
+
+  onChangeSearch(search: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+  }
+
+  onFocused(e) {
+    // do something
   }
 }

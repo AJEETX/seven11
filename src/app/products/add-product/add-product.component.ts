@@ -99,7 +99,9 @@ export class AddProductComponent implements OnInit {
     this.loading = true;
     this.submitted=true;
     this.spinnerService.show();
-
+    if(this.addForm.invalid)
+    return;
+    this.addForm.controls.location.setValue(this.addForm.controls.location.value.name)
     this.service.addVehicle(this.addForm.value)
     .subscribe(data=>{
       this.spinnerService.hide()
