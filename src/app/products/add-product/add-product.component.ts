@@ -14,6 +14,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 })
 export class AddProductComponent implements OnInit {
   addForm:FormGroup
+  submitted=false
   user:string
   userId:string
   message:string
@@ -96,13 +97,15 @@ export class AddProductComponent implements OnInit {
   }  
   onSubmit(){
     this.loading = true;
+    this.submitted=true;
     this.spinnerService.show();
 
     this.service.addVehicle(this.addForm.value)
     .subscribe(data=>{
       this.spinnerService.hide()
       this.message=data['name'] +'added'
-      this.router.navigate([''])
+    this.submitted=false;
+    this.router.navigate([''])
     },
     error => {
       if(error && error.status==400){
