@@ -95,9 +95,7 @@ export class AddProductComponent implements OnInit {
   getIP()  
   {  
     let ip= this.service.getIPAddress()  
-    
       // this.addForm.controls.location.setValue(res.ip);  
-    
   }  
   onSubmit(){
     this.loading = true;
@@ -110,8 +108,8 @@ export class AddProductComponent implements OnInit {
     .subscribe(data=>{
       this.spinnerService.hide()
       this.message=data['name'] +'added'
-    this.submitted=false;
-    this.router.navigate([''])
+      this.submitted=false;
+      this.router.navigate([''])
     },
     error => {
       if(error && error.status==400){
@@ -120,10 +118,10 @@ export class AddProductComponent implements OnInit {
         this.error={
           error:'Server error'
         }
-      }
         this.loading = false;
         this.router.navigate(['/login'])
         this.spinnerService.hide()
+      }
       })
   }
   open(ev: any) {

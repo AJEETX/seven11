@@ -55,9 +55,9 @@ export class LoginComponent implements OnInit {
                   this.error={
                     error:'Server error'
                   }
-                }
                   this.loading = false;
                   this.spinnerService.hide();
+                }
               });
     }
 }

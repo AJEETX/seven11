@@ -20,9 +20,8 @@ userdisabled=true;
 username:string
 keyword = 'name';
 location=''
-
+error :any={error:''};
 disableControl:DisableControlDirective
-error = '';
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, 
     private router: Router,private spinnerService: Ng4LoadingSpinnerService,
     private authservice:AuthService) { 
@@ -59,10 +58,21 @@ error = '';
     this.userForm.controls.location.setValue(this.userForm.controls.location.value.name)
     this.authservice.update(this.userForm.value)
     .subscribe(data=>{
-    this.spinnerService.hide();
-
+      this.spinnerService.hide();
       this.router.navigate([''])
-    })
+    },
+    error => {
+      if(error && error.status==400){
+        this.error = error;
+      }else{
+        this.error={
+          error:'Server error'
+        }
+      }
+      this.loading = false;
+      this.spinnerService.hide()
+      this.router.navigate(['/login']);
+      });
   }
   public locations=[
     {

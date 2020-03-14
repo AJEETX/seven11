@@ -178,3 +178,8 @@ span{
     .ngx-datepicker-input{
         background-color: #FFFFBF;
     }
+    .isDisabled {
+        color: currentColor;
+        pointer-events: none;
+        cursor:none;
+      }

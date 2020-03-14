@@ -98,9 +98,9 @@ public maxDate: Date = new Date ();
           error:'Server error'
         }
       }
-        this.loading = false;
-        this.spinnerService.hide()
-        this.router.navigate(['/login']);
+      this.loading = false;
+      this.spinnerService.hide()
+      this.router.navigate(['/login']);
       });
   }
   back(){

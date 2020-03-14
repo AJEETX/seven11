@@ -1,40 +1,39 @@
 <div class="top">
     <div class=error >{{error.error}}</div >
-      <div class="alignright">
-        <div class="nothing">  
+    <div class="alignright">
+      <div class="nothing">  
+      </div>
+      <div class="welcome log nothing"> Welcome
+          <i class="fa fa-quote-left right left"></i>
+          <a [routerLink]="['/user']" class="farleft" >
+            {{user}}
+          </a>
+          <i class="fa fa-quote-right left"></i>
         </div>
-        <div class="welcome log nothing"> Welcome
-            <i class="fa fa-quote-left right left"></i>
-            <a [routerLink]="['/user']" class="farleft" >
-              {{user}}
-            </a>
-            <i class="fa fa-quote-right left"></i>
-          </div>
-      <div class="log">
-        <a [routerLink]="['/login']" class="farleft" ><i class="fa fa-power-off right"></i>Logout</a>
-      </div>
+    <div class="log">
+      <a [routerLink]="['/login']" class="farleft" ><i class="fa fa-power-off right"></i>Logout</a>
     </div>
-<div class="alignleft">
+  </div>
+    <div class="alignleft">
         <button class="btn btn-primary" (click)="addProduct()"><i class="fa fa-plus-square right"></i>Add Drive Off</button>
-      </div>
-    <div>
+    </div>
+<div>
+  <div class="search">
+    <input type="search" class="form-control" placeholder="type to search ..." [formControl]="searchField" >
+    <ul>
+      <li *ngFor="let search of searches">{{ search }}</li>
+    </ul>
 
-<div class="search">
-  <input type="search" class="form-control" placeholder="type to search ..." [formControl]="searchField" >
-  <ul>
-    <li *ngFor="let search of searches">{{ search }}</li>
-  </ul>
-
-  <svg viewBox="0 0 260 25" xmlns="http://www.w3.org/2000/svg">
-    <style>
-      .heavy { font: bold 10px sans-serif; }
-      .Rrrrr { fill: red; text-shadow: 1px 1px 1px grey;}
-    </style>
-    <text x="90" y="10" class="heavy">Drive Off</text>
-    <text x="135" y="10" class="heavy Rrrrr">Vehicles</text>
-  </svg>
-</div>
-<table class="table table-striped">
+    <svg viewBox="0 0 260 25" xmlns="http://www.w3.org/2000/svg">
+      <style>
+        .heavy { font: bold 10px sans-serif; }
+        .Rrrrr { fill: red; text-shadow: 1px 1px 1px grey;}
+      </style>
+      <text x="90" y="10" class="heavy">Drive Off</text>
+      <text x="135" y="10" class="heavy Rrrrr">Vehicles</text>
+    </svg>
+  </div>
+  <table class="table table-striped">
       <thead>
         <tr>
           <!-- <th class="hidden">Id</th> -->
@@ -78,7 +77,7 @@
           </span>
           </td>        
         </tbody>
-      </table>
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    </div>
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
     
