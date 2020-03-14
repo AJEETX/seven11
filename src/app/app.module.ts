@@ -23,6 +23,7 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { NgDatepickerModule } from 'ng2-datepicker';
 import { DatePipe, CurrencyPipe } from '@angular/common';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,8 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
     NgxPaginationModule,
     MyDatePickerModule ,
     NgDatepickerModule,
-    Ng4LoadingSpinnerModule.forRoot()
+    Ng4LoadingSpinnerModule.forRoot(),
+    AutocompleteLibModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

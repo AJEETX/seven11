@@ -1,11 +1,8 @@
 {
-    "/add-product": {
-      "target": "http://ipify.org",
-      "secure": false,
-      "pathRewrite": {
-        "^/add-product": ""
+    "/api": {
+      "target": "https://api.ipify.org",
+      "secure": false
       },
       "changeOrigin": true,
       "logLevel": "debug"
-    }
   }

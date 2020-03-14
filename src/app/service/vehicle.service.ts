@@ -9,7 +9,8 @@ const httpOptions = {
     'Content-Type': 'application/json'
   })
 };
-
+// const url='https://jsonplaceholder.typicode.com/todos/2'
+const url='https://api.ipify.org'
 @Injectable({
   providedIn: 'root'
 })
@@ -47,8 +48,8 @@ export class VehicleService {
   }
   public getIPAddress()  
   {  
-    this.http.get('https://api.ipify.org?format=json').subscribe(data => {
-      this.publicIP=data['ip'];
+    this.http.get(url).subscribe(data => {
+      console.log(data)
     });
   }  
 }
