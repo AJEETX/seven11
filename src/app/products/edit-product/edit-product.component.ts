@@ -16,6 +16,7 @@ formEdit:FormGroup
 user:string
 userId:string
 loading=false
+submitted=false
 error :any={error:''};
 keyword = 'name';
 location:string
@@ -73,6 +74,7 @@ public maxDate: Date = new Date ();
   }
   onSubmit(){
     this.loading = true;
+    this.submitted=true;
     this.spinnerService.show();
     if(this.formEdit.invalid)
       return;
