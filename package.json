@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.0.0",
   "scripts": {
-    "dev":"ng serve -o --port 4000",
+    "dev": "ng serve -o --port 4000",
     "ng": "ng",
     "start": "node server.js ",
     "build": "ng build",
