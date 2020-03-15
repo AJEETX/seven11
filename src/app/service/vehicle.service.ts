@@ -2,14 +2,6 @@ import { Vehicle } from '../model'
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import {Config} from '../../configuration/config';
-import {Component} from '@angular/core';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json'
-  })
-};
-// const url='http://ip-api.com/json'
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +9,9 @@ const httpOptions = {
 
 export class VehicleService {
   baseUrl:string=Config.baseUrl+"vehicles"
-  publicIP;
-
+ 
   constructor(private http:HttpClient) { 
-    this.http.get('http://httpbin.org/ip').subscribe(data => {
-      this.publicIP=data;
+    this.http.get(Config.ipaddressurl).subscribe(data => {
     });
   }
   getVehicles(query?:string){
@@ -48,13 +38,12 @@ export class VehicleService {
   }
   public getIPAddress()  
   {  
-    this.http.get('http://httpbin.org/ip').subscribe(data => {
-      const url='https://ipapi.co/'+data['origin']+'/json'
+    this.http.get(Config.ipaddressurl).subscribe(data => {
+      const url=Config.geoLocation+data['origin']+'/json'
       this.http.get(url).subscribe(data => {
         console.log(data)
         return data;
       });
     });
-
   }  
 }
