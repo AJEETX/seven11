@@ -1,8 +1,8 @@
 <div class="top">
-    <div class=error >{{error.error}}</div >
-        <svg viewBox="0 0 240 30" xmlns="http://www.w3.org/2000/svg">
-            <text x="100" y="15" class="heavy Rrrrr">login!</text>
-          </svg>
+    <i *ngIf="haserror" class="fa fa-warning error">{{error.error}}</i>
+    <svg viewBox="0 0 240 30" xmlns="http://www.w3.org/2000/svg">
+          <text x="100" y="15" class="heavy Rrrrr">login!</text>
+    </svg>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
       <label for="username">Username</label>

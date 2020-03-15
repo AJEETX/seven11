@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   loading = false;
   submitted = false;
   location=''
+  haserror=false
   error :any={error:''};
   @ViewChild('auto') auto;
 
@@ -30,12 +31,12 @@ export class RegisterComponent implements OnInit {
       });
     }
   ngOnInit() {
-    // this.auto.select({id: 1, name: 'Charlestown'})
     this.authservice.logout();
   }
     get f() { return this.registerForm.controls; }
     onSubmit() {
       this.submitted = true;
+      this.haserror=false
 
       if (this.registerForm.invalid) {
           return;
@@ -50,12 +51,13 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['login'])
       },
       error=>{
-        if(error && error.status==400){
+        if(error && error.status==401){
           this.error = error;
         }else{
           this.error={
             error:'Server error'
           }
+          this.haserror=true
         }
         this.submitted = false;
         this.spinnerService.hide()

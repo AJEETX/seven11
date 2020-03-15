@@ -21,6 +21,7 @@ username:string
 keyword = 'name';
 location=''
 error :any={error:''};
+haserror=false
 disableControl:DisableControlDirective
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, 
     private router: Router,private spinnerService: Ng4LoadingSpinnerService,
@@ -34,9 +35,19 @@ disableControl:DisableControlDirective
            this.userForm.setValue(data)
            this.spinnerService.hide()
          },
-         error=>{
-           this.error=error
-         })
+         error => {
+           if(error && error.status==401){
+             this.error = error;
+             this.router.navigate(['/login']);
+            }else{
+             this.error={
+               error:'Server error'
+             }
+             this.haserror=true
+           }
+             this.loading = false;
+             this.spinnerService.hide();
+         }) 
         this.userForm = this.formBuilder.group({
           id:[],
           firstname: ['', Validators.required],
@@ -62,16 +73,17 @@ disableControl:DisableControlDirective
       this.router.navigate([''])
     },
     error => {
-      if(error && error.status==400){
+      if(error && error.status==401){
         this.error = error;
-      }else{
+      this.router.navigate(['/login']);
+    }else{
         this.error={
           error:'Server error'
         }
+        this.haserror=true
       }
       this.loading = false;
       this.spinnerService.hide()
-      this.router.navigate(['/login']);
       });
   }
   public locations=[

@@ -20,6 +20,7 @@ export class AddProductComponent implements OnInit {
   message:string
   loading = false;
   error :any={error:''};
+  haserror=false
   location:string
   public keyword = 'name';
   options: DatepickerOptions = {
@@ -95,11 +96,12 @@ export class AddProductComponent implements OnInit {
   getIP()  
   {  
     let ip= this.service.getIPAddress()  
-      // this.addForm.controls.location.setValue(res.ip);  
+    // this.addForm.controls.location.setValue(res.ip);  
   }  
   onSubmit(){
     this.loading = true;
     this.submitted=true;
+    this.haserror=false
     this.spinnerService.show();
     if(this.addForm.invalid)
     return;
@@ -112,14 +114,15 @@ export class AddProductComponent implements OnInit {
       this.router.navigate([''])
     },
     error => {
-      if(error && error.status==400){
+      if(error && error.status==401){
+        this.router.navigate(['/login'])
         this.error = error;
       }else{
         this.error={
           error:'Server error'
         }
+        this.haserror=true
         this.loading = false;
-        this.router.navigate(['/login'])
         this.spinnerService.hide()
       }
       })

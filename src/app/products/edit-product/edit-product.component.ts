@@ -16,6 +16,7 @@ formEdit:FormGroup
 user:string
 userId:string
 loading=false
+haserror=false
 submitted=false
 error :any={error:''};
 keyword = 'name';
@@ -41,11 +42,11 @@ public maxDate: Date = new Date ();
     private service:VehicleService,private router:Router,
     private spinnerService: Ng4LoadingSpinnerService) { 
       if(localStorage.getItem('user')){
-    this.user=localStorage.getItem('user')
-    if(localStorage.getItem('userId'))
-    this.userId=localStorage.getItem('userId')
-    if(localStorage.getItem('location'))
-    this.location=localStorage.getItem('location')
+        this.user=localStorage.getItem('user')
+        if(localStorage.getItem('userId'))
+        this.userId=localStorage.getItem('userId')
+        if(localStorage.getItem('location'))
+        this.location=localStorage.getItem('location')
       }else{
       this.router.navigate(['/login']);
       }
@@ -74,11 +75,25 @@ public maxDate: Date = new Date ();
       data.date=new Date(currentDate);
       console.log(data.date)
       this.formEdit.setValue(data)
-    })
+    },
+    error => {
+      if(error && error.status==401){
+        this.error = error;
+        this.router.navigate(['/login']);
+      }else{
+        this.error={
+          error:'Server error'
+        }
+        this.haserror=true
+      }
+        this.loading = false;
+        this.spinnerService.hide();
+    }) 
   }
   onSubmit(){
     this.loading = true;
     this.submitted=true;
+    this.haserror=false
     this.spinnerService.show();
     if(this.formEdit.invalid)
       return;
@@ -91,16 +106,17 @@ public maxDate: Date = new Date ();
         this.router.navigate([''])
     },
     error => {
-      if(error && error.status==400){
+      this.loading = false;
+      this.spinnerService.hide()
+      if(error && error.status==401){
         this.error = error;
+        this.router.navigate(['/login']);
       }else{
         this.error={
           error:'Server error'
         }
-      }
-      this.loading = false;
-      this.spinnerService.hide()
-      this.router.navigate(['/login']);
+          this.haserror=true
+        }
       });
   }
   back(){

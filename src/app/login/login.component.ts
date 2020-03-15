@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   error :any={error:''};
+  haserror=false
   constructor( private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router,
     private authservice:AuthService,private spinnerService: Ng4LoadingSpinnerService) { }
 
@@ -32,6 +33,8 @@ export class LoginComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
+        this.haserror=false
+
         if (this.loginForm.invalid) {
             return;
         }
@@ -49,15 +52,12 @@ export class LoginComponent implements OnInit {
             }
               },
               error => {
-                if(error && error.status==400){
-                  this.error = error;
-                }else{
                   this.error={
                     error:'Server error'
                   }
-                  this.loading = false;
-                  this.spinnerService.hide();
-                }
+                this.loading = false;
+                this.spinnerService.hide();
+                this.haserror=true
               });
     }
 }

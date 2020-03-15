@@ -18,7 +18,7 @@ export class ProductListComponent implements OnInit {
   admin:boolean
   loading=false
   error :any={error:''};
-
+  haserror=false  
   searchField: FormControl
   searches: string[] = [];
   colordanger:'red'
@@ -33,6 +33,7 @@ export class ProductListComponent implements OnInit {
   p: number = 1;
 
   constructor(private router:Router, private service:VehicleService,private spinnerService: Ng4LoadingSpinnerService) {
+    this.haserror=false
     if(localStorage.getItem('user')){
       this.loading=true
       this.spinnerService.show();
@@ -44,7 +45,19 @@ export class ProductListComponent implements OnInit {
           this.products=data
           this.loading=false
           this.spinnerService.hide()
-      })     
+      },
+      error => {
+        if(error && error.status==401){
+          this.router.navigate(['/login']);
+        }else{
+          this.error={
+            error:'Server error'
+          }
+          this.haserror=true
+        }
+          this.loading = false;
+          this.spinnerService.hide();
+      })   
     }
     else{
       this.router.navigate(['/login']);
@@ -53,6 +66,7 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
     this.loading=true
     this.spinnerService.show();
+    this.haserror=false
     this.searchField = new FormControl()
     this.searchField.valueChanges
     .pipe(
@@ -60,24 +74,38 @@ export class ProductListComponent implements OnInit {
       distinctUntilChanged()
     )
     .subscribe(term => {
-    this.spinnerService.show();
-    this.service.getVehicles(term)
-      .subscribe(data=>{
-        console.log(data)
-        this.loading=false
-        this.spinnerService.hide()
-        this.products=data
-      })
+      this.spinnerService.show();
+      this.service.getVehicles(term)
+        .subscribe(data=>{
+          console.log(data)
+          this.loading=false
+          this.spinnerService.hide()
+          this.products=data
+        },
+        error => {
+          if(error && error.status==401){
+            this.router.navigate(['/login']);
+          }else{
+            this.haserror=true
+            this.error={
+              error:'Server error'
+            }
+          }
+            this.loading = false;
+            this.spinnerService.hide();
+        })
     });
   }
   addProduct():void{
     this.loading=true
     this.spinnerService.show();
+    this.haserror=false
     this.router.navigate(['add-vehicle'])
   }
   editProduct(product: Vehicle): void {
     this.loading=true
     this.spinnerService.show();
+    this.haserror=false
     localStorage.removeItem("pid");
     localStorage.setItem("pid", product.pId.toString());
     this.router.navigate(['edit-vehicle']);
@@ -85,28 +113,28 @@ export class ProductListComponent implements OnInit {
   deleteProduct(product: Vehicle): void {
     this.loading=true
     this.spinnerService.show();
-
+    this.haserror=false
     this.service.delete(product.pId)
       .subscribe( data => {
-      this.loading=false
-    this.spinnerService.hide();
-    this.products = this.products.filter(u => u !== product);
+        this.loading=false
+        this.spinnerService.hide();
+        this.products = this.products.filter(u => u !== product);
       },
       error => {
-        if(error && error.status==400){
+        if(error && error.status==401){
           this.error = error;
+          this.router.navigate(['/login']);
         }else{
           this.error={
             error:'Server error'
-          }
+          }          
+          this.haserror=true
         }
           this.loading = false;
           this.spinnerService.hide();
-          this.router.navigate(['/login']);
   })
   };
   getUserDetail(){
-    var id=localStorage.getItem('id')
     this.router.navigate(['/user']);
   }
   setMyStyles(product) {
