@@ -28,7 +28,7 @@
     "angular-ng-autocomplete": "^2.0.1",
     "bootstrap": "^4.4.1",
     "core-js": "^2.5.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mydatepicker": "^2.6.9",
     "ng2-datepicker": "^3.1.1",
     "ng2-order-pipe": "^0.1.5",
